@@ -18,7 +18,7 @@
 	</h1>
 	{#if scrollY / 20 < 20}
 		<div
-			style:filter={`blur(${scrollY / 20}px)`}
+			style:filter={`blur(${scrollY > 100 ? (scrollY - 100) / 20 : 0}px)`}
 			class="absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center"
 		>
 			<p>Scroll down</p>

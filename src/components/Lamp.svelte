@@ -1,12 +1,24 @@
 <script lang="ts">
 	let isOn = $state(true);
+	let clickCounter = $state(0);
 
 	function toggleLamp() {
 		isOn = !isOn;
+		clickCounter++;
+		if (clickCounter > 6) {
+			setTimeout(() => {
+				clickCounter = 0;
+			}, 2000);
+		}
+		console.log(clickCounter);
 	}
 </script>
 
-<div id="lampadario">
+<div
+	id="lampadario"
+	style:transform={`${clickCounter > 6 ? 'translateY(-200%)' : ''}`}
+	class="transition-transform duration-1000"
+>
 	<input type="radio" name="switch" value="on" checked={true} onchange={toggleLamp} />
 	<input type="radio" name="switch" value="off" checked={false} onchange={toggleLamp} />
 	<label for="switch"></label>
@@ -18,7 +30,8 @@
 		@apply absolute right-1/3 top-0;
 	}
 	#filo {
-		@apply relative left-2/4 z-[1] -ml-px h-[150px] w-0.5 origin-[0%_0%] animate-[oscillaFilo_0.9s_ease-in-out_0s_infinite_alternate] bg-black after:absolute after:left-[-3px] after:top-full after:h-0 after:w-1 after:border-x-4 after:border-b-[15px] after:border-solid after:border-x-transparent after:border-b-black after:content-["_"];
+		@apply relative left-2/4 z-[1] -ml-px h-[150px] w-0.5 origin-[0%_0%] bg-black after:absolute after:left-[-3px] after:top-full after:h-0 after:w-1 after:border-x-4 after:border-b-[15px] after:border-solid after:border-x-transparent after:border-b-black after:content-["_"];
+		animation: oscillaFilo 0.9s ease-in-out 0s infinite alternate;
 		-webkit-transform-origin: 0% 0%;
 		-moz-transform-origin: 0% 0%;
 		-ms-transform-origin: 0% 0%;
@@ -55,8 +68,9 @@
 		@apply top-[150px];
 	}
 	label {
-		@apply absolute left-0 top-[164px] -ml-6 h-[51px] w-[51px] animate-[oscillaLampadina_0.9s_ease-in-out_0s_infinite_alternate] rounded-full;
+		@apply absolute left-0 top-[164px] -ml-6 h-[51px] w-[51px] rounded-full;
 		-webkit-border-radius: 100%;
+		animation: oscillaLampadina 0.9s ease-in-out 0s infinite alternate;
 		-moz-border-radius: 100%;
 		-ms-border-radius: 100%;
 		-o-border-radius: 100%;
@@ -150,10 +164,10 @@
 	}
 	@keyframes oscillaFilo {
 		from {
-			@apply rotate-[5deg];
+			transform: rotate(5deg);
 		}
 		to {
-			@apply rotate-[-5deg];
+			transform: rotate(-5deg);
 		}
 	}
 	@-webkit-keyframes oscillaLampadina {
@@ -190,11 +204,10 @@
 	}
 	@keyframes oscillaLampadina {
 		from {
-			@apply -translate-y-px translate-x-[-16.4px] rotate-3;
+			transform: translateY(-1px) translateX(-16.4px) rotate(3deg);
 		}
 		to {
-			@apply -translate-y-px translate-x-[16.4px] -rotate-3;
+			transform: translateY(-1px) translateX(16.4px) rotate(-3deg);
 		}
 	}
 </style>
-
