@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
 	import Lamp from '../components/Lamp.svelte';
+	import Tyler from '../components/Tyler.svelte';
 
 	function blurAfter(y: number): string {
 		return scrollY > y ? `blur(${(scrollY - y) / 15}px) ` : '';
@@ -18,7 +19,9 @@
 </script>
 
 <svelte:window bind:scrollY />
+
 <div class="flex h-screen items-center justify-center">
+	<Tyler></Tyler>
 	<Lamp />
 	<h1
 		style:filter={blurAfter(100)}
