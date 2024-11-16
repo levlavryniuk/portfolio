@@ -1,5 +1,5 @@
 export type Project = {
-	id: number;
+	id: number;  
 	name: string;
 	description: string;
 	technologies: string[];
@@ -26,7 +26,7 @@ export const projects: Project[] = [
 			'https://github.com/0x4C656F/cleverize-backend',
 			'https://github.com/0x4C656F/cleverize-frontend'
 		],
-		websiteUrl: '', // Not provided
+		websiteUrl: '', 
 		logoUrl: '/images/cleverize.webp'
 	},
 	{
