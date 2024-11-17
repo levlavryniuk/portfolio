@@ -8,9 +8,9 @@
 		() =>
 			(interval = setInterval(() => {
 				show = !show;
-				setTimeout(() => (show = !show), 50);
+				setTimeout(() => (show = !show), 55);
 				if (interval) clearInterval(interval);
-			}, 10000))
+			}, 9000))
 	);
 
 	onDestroy(() => {

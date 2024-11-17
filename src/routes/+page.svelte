@@ -2,12 +2,28 @@
 	import Icon from '@iconify/svelte';
 	import Lamp from '../components/Lamp.svelte';
 	import Tyler from '../components/Tyler.svelte';
+	const facts: string[] = [
+		'I started programming when I was 12 years old',
+		'I use vim, btw',
+		'I am really bad at designing things, this website is a proof',
+		'I really really enjoy writing Rust code',
+		'I am from Kyiv, Ukraine',
+		'I study at American University Kyiv',
+		'I am interested in game dev',
+		'I like physics and math',
+		'I forgot to put 10th fact there'
+	];
 
-	function blurAfter(y: number): string {
+	function getRandomColor() {
+		const colors = ['#0e3847', '#15295f', '#370e6b', '#5d102f', '#0d3b21', '#552509', '#5a1212'];
+		const index = Math.floor(Math.random() * 7);
+		return colors[index];
+	}
+	function blurAfter(y: number) {
 		return scrollY > y ? `blur(${(scrollY - y) / 15}px) ` : '';
 	}
 
-	function moveTopDividedBy(modifier: number): string {
+	function moveTopDividedBy(modifier: number) {
 		return `translateY(-${scrollY / modifier}px) `;
 	}
 
@@ -68,6 +84,20 @@
 			style:filter={blurAfter(890)}
 		/>
 	</div>
-	<h2 class="mt-40 flex h-screen flex-col text-6xl">Here are 10 facts about me</h2>
+	<div class="mt-40 flex h-screen w-screen flex-col items-center justify-center gap-20">
+		<h2 class=" text-6xl">Here are 10 facts about me</h2>
+		<div class="carousel carousel-vertical h-40 w-[400px] rounded-box">
+			{#each facts as fact, index}
+				<div
+					style:background={getRandomColor()}
+					class="carousel-item relative flex h-full items-center justify-center px-4"
+				>
+					<p class="absolute right-4 top-4">{index + 1}/10</p>
+
+					<p class="text-lg italic">{fact}</p>
+				</div>
+			{/each}
+		</div>
+	</div>
 </div>
 <!-- <ProjectsSection></ProjectsSection> -->
