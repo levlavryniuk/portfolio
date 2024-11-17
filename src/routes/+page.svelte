@@ -15,7 +15,25 @@
 	];
 
 	function getRandomColor() {
-		const colors = ['#0e3847', '#15295f', '#370e6b', '#5d102f', '#0d3b21', '#552509', '#5a1212'];
+		const colors = [
+			'#450a0a', // Red-950
+			'#431407', // Orange-950
+			'#451a03', // Amber-950
+			'#422006', // Yellow-950
+			'#1a2e05', // Lime-950
+			'#052e16', // Green-950
+			'#022c22', // Emerald-950
+			'#042f2e', // Teal-950
+			'#083344', // Cyan-950
+			'#082f49', // Sky-950
+			'#172554', // Blue-950
+			'#1e1b4b', // Indigo-950
+			'#2e1065', // Violet-950
+			'#3b0764', // Purple-950
+			'#4a044e', // Fuchsia-950
+			'#500724', // Pink-950
+			'#4c0519' // Rose-950
+		];
 		const index = Math.floor(Math.random() * 7);
 		return colors[index];
 	}
@@ -90,7 +108,7 @@
 			{#each facts as fact, index}
 				<div
 					style:background={getRandomColor()}
-					class="carousel-item relative flex h-full items-center justify-center px-4"
+					class="carousel-item relative flex h-full items-center justify-center bg-opacity-85 px-4 shadow-xl shadow-black"
 				>
 					<p class="absolute right-4 top-4">{index + 1}/10</p>
 
