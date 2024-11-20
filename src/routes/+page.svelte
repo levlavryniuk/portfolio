@@ -103,19 +103,21 @@
 		/>
 	</div>
 	<div class="mt-40 flex h-screen w-screen flex-col items-center justify-center gap-20">
-		<h2 class=" text-6xl">Here are 10 facts about me</h2>
-		<div class="carousel carousel-vertical h-40 w-[400px] rounded-box">
-			{#each facts as fact, index}
-				<div
-					style:background={getRandomColor()}
-					class="carousel-item relative flex h-full items-center justify-center bg-opacity-85 px-4 shadow-xl shadow-black"
-				>
-					<p class="absolute right-4 top-4">{index + 1}/10</p>
+		<div>
+			<h2 class=" text-6xl">Here are 10 facts about me</h2>
+			<div class="carousel carousel-vertical h-40 w-[400px] rounded-box">
+				{#each facts as fact, index}
+					<div
+						style:background={getRandomColor()}
+						class="carousel-item relative flex h-full items-center justify-center bg-opacity-85 px-4 shadow-xl shadow-black"
+					>
+						<p class="absolute right-4 top-4">{index + 1}/10</p>
 
-					<p class="text-lg italic">{fact}</p>
-				</div>
-			{/each}
+						<p class="text-lg italic">{fact}</p>
+					</div>
+				{/each}
+			</div>
 		</div>
+		<div></div>
 	</div>
 </div>
-<!-- <ProjectsSection></ProjectsSection> -->
