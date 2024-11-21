@@ -10,7 +10,7 @@
 				clickCounter = 0;
 			}, 2000);
 		}
-		console.log(clickCounter);
+		window.document.documentElement.setAttribute('data-theme', !isOn ? 'sunset' : 'luxury');
 	}
 </script>
 

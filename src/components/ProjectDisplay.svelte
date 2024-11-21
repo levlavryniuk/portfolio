@@ -48,15 +48,15 @@
 
 		<!-- Content Section -->
 		<div class="card-body">
-			<h2 class="card-title justify-center">
+			<h2 class="card-title justify-start">
 				{project.name}
 				<div class="badge badge-secondary">{project.status}</div>
 			</h2>
 
-			<p class="text-center text-base-content/80">{project.description}</p>
+			<p class="text-left text-base-content/80">{project.description}</p>
 
 			<!-- Technologies -->
-			<div class="mt-4 pl-3">
+			<div class="mt-4">
 				<h3 class="mb-2 text-sm font-semibold uppercase text-base-content/60">Technologies</h3>
 				<div class="flex flex-wrap gap-2">
 					{#each project.technologies as tech}
@@ -69,7 +69,7 @@
 			{#if project.features && project.features.length > 0}
 				<div class="collapse collapse-arrow bg-base-200" transition:fade>
 					<input type="checkbox" />
-					<div class="collapse-title text-sm font-semibold uppercase text-base-content/60">
+					<div class="collapse-title pl-0 text-sm font-semibold uppercase text-base-content/60">
 						Features
 					</div>
 					<div class="collapse-content">

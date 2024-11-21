@@ -1,21 +1,14 @@
 <script lang="ts">
-	import { onDestroy, onMount } from 'svelte';
+	import { onMount } from 'svelte';
 
 	let show = $state(false);
 
-	let interval = $state<null | number>(null);
-	onMount(
-		() =>
-			(interval = setInterval(() => {
-				show = !show;
-				setTimeout(() => (show = !show), 55);
-				if (interval) clearInterval(interval);
-			}, 9000))
+	onMount(() =>
+		setTimeout(() => {
+			show = !show;
+			setTimeout(() => (show = !show), 55);
+		}, 9000)
 	);
-
-	onDestroy(() => {
-		if (interval) clearInterval(interval);
-	});
 </script>
 
 {#if show}

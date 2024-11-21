@@ -49,8 +49,8 @@
 	}
 </script>
 
-<div class="flex h-screen flex-col items-center justify-center gap-20 bg-base-200">
-	<h2 class="text-center text-4xl font-semibold">My projects</h2>
+<div class="my-20 flex h-screen flex-col items-center justify-center gap-20 bg-base-200">
+	<h2 class="text-center text-6xl">My projects</h2>
 
 	<div
 		use:inview={{ unobserveOnEnter: true }}

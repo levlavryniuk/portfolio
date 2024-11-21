@@ -116,7 +116,7 @@
 		car.handleMouseMove(e);
 	}}
 />
-<div class="fixed bottom-2 left-2 flex items-center gap-2 p-1 max-lg:hidden">
+<div class="fixed bottom-2 left-2 z-50 flex items-center gap-2 p-1 max-lg:hidden">
 	<p class="text-sm">Enable car</p>
 	<input type="checkbox" class="checkbox checkbox-xs" bind:checked={enableCar} />
 </div>

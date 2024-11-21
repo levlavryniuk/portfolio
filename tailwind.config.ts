@@ -5,7 +5,7 @@ export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 
 	daisyui: {
-		themes: ['sunset']
+		themes: ['luxury', "sunset"]
 	},
 	theme: {
 		extend: {
