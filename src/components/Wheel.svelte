@@ -32,7 +32,7 @@ justify-center gap-2 bg-gradient-to-t from-base-300 to-base-100"
 		></div>
 	</div>
 {/snippet}
-<div class="relative box-border size-[500px] rounded-full  border-base-200 shadow-lg">
+<div class="relative box-border size-[500px] rounded-full border-base-200 shadow-lg">
 	{@render Cover()}
 	<div
 		style:height={(hasSpinned ? (isSpinning ? 0 : 160) : 0) + 'px'}
@@ -69,7 +69,7 @@ justify-center gap-2 bg-gradient-to-t from-base-300 to-base-100"
 </div>
 
 <style>
-	.rise-up {
-		@apply -translate-y-10 scale-125 bg-black;
-	}
+	/*.rise-up {*/
+	/*	@apply -translate-y-10 scale-125 bg-black;*/
+	/*}*/
 </style>

@@ -10,7 +10,7 @@
 				clickCounter = 0;
 			}, 2000);
 		}
-		window.document.documentElement.setAttribute('data-theme', !isOn ? 'sunset' : 'luxury');
+		window.document.documentElement.setAttribute('data-theme', !isOn ? 'light' : 'sunset');
 	}
 </script>
 

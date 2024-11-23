@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
-	import Facts from '../components/Facts.svelte';
+	import Facts1 from '../components/Facts1.svelte';
 	import Lamp from '../components/Lamp.svelte';
 	import ProjectsSection from '../components/ProjectsSection.svelte';
 	import Tyler from '../components/Tyler.svelte';
@@ -62,16 +62,12 @@
 <div class="flex h-screen items-center justify-center">
 	<Tyler></Tyler>
 	<Lamp />
-	<h1
-		style:filter={blurAfter(10)}
-		style:transform={moveTopDividedBy(1)}
-		class="text-center text-6xl"
-	>
+	<h1 style:filter={blurAfter(10)} style:transform={moveTopDividedBy(1)}>
 		Hi there! My name is Leo.<br /> I am a programmer
 	</h1>
 	{#if scrollY / 20 < 20}
 		<div
-			style:filter={blurAfter(100)}
+			style:filter={blurAfter(0)}
 			class="absolute bottom-20 left-1/2 flex -translate-x-1/2 flex-col items-center"
 		>
 			<p>Scroll down</p>
@@ -85,8 +81,8 @@
 		class="flex w-full flex-col items-center justify-center gap-10"
 		style:transform={moveTopDividedBy(1.7)}
 	>
-		<h2 style:filter={blurAfter(720)} class="relative max-w-[50%] text-center text-6xl">
-			I specialize on creating bullet-proof web applications using<br />
+		<h2 style:filter={blurAfter(720)} class="relative max-w-[50%]">
+			I specialize on creating bullet-proof<br /> web applications using<br />
 			<span class="bg-gradient-to-r from-blue-400 to-blue-500 bg-clip-text text-transparent"
 				>Typescript</span
 			>
@@ -95,8 +91,8 @@
 				>Rust</span
 			>
 			<span
-				class:opacity-100={scrollY > 540}
-				class:opacity-0={scrollY < 540}
+				class:opacity-100={scrollY > 500}
+				class:opacity-0={scrollY < 500}
 				class="absolute left-1/2 top-[120%] -z-10 h-16 w-48 -translate-x-1/2 bg-primary blur-3xl transition-opacity duration-1000"
 			></span>
 		</h2>
@@ -112,8 +108,8 @@
 	style:transform={moveTopDividedBy(25)}
 	class="my-40 flex h-screen w-screen flex-col items-center justify-center gap-20 pt-80"
 >
-	<h2 class="text-6xl">Here are 10 facts about me</h2>
-	<Facts {facts} />
+	<h2>Here are 10 facts about me</h2>
+	<Facts1 />
 </div>
 
 <ProjectsSection />
