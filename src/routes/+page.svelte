@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
+  import Game from "../components/Game.svelte"
 	import Facts1 from '../components/Facts1.svelte';
 	import Lamp from '../components/Lamp.svelte';
 	import ProjectsSection from '../components/ProjectsSection.svelte';
@@ -78,10 +79,10 @@
 
 <div class="absolute my-40 flex h-fit w-screen flex-col items-center">
 	<div
-		class="flex w-full flex-col items-center justify-center gap-10"
+		class="flex w-full flex-row-reverse items-center justify-center gap-10"
 		style:transform={moveTopDividedBy(1.7)}
 	>
-		<h2 style:filter={blurAfter(720)} class="relative max-w-[50%]">
+		<h2 style:filter={blurAfter(720)} class="relative  text-left max-w-[50%]">
 			I specialize on creating bullet-proof<br /> web applications using<br />
 			<span class="bg-gradient-to-r from-blue-400 to-blue-500 bg-clip-text text-transparent"
 				>Typescript</span
@@ -106,9 +107,9 @@
 </div>
 <div
 	style:transform={moveTopDividedBy(25)}
-	class="my-40 flex h-screen w-screen flex-col items-center justify-center gap-20 pt-80"
+	class="my-40 mb-60 flex h-screen px-4 w-screen  items-center justify-center  pt-80 gap-10"
 >
-	<h2>Here are 10 facts about me</h2>
+	<h2 class="w-min text-base-content/30 text-7xl text-right">Here are 9 facts about me</h2>
 	<Facts1 />
 </div>
 

@@ -10,7 +10,7 @@
 				clickCounter = 0;
 			}, 2000);
 		}
-		window.document.documentElement.setAttribute('data-theme', !isOn ? 'light' : 'sunset');
+		window.document.documentElement.setAttribute('data-theme', !isOn ? 'wireframe' : 'sunset');
 	}
 </script>
 
@@ -21,7 +21,7 @@
 >
 	<input type="radio" name="switch" value="on" checked={true} onchange={toggleLamp} />
 	<input type="radio" name="switch" value="off" checked={false} onchange={toggleLamp} />
-	<label for="switch"></label>
+	<label for="switch" class="border-l cursor-pointer bg-base-200/80"></label>
 	<div id="filo"></div>
 </div>
 

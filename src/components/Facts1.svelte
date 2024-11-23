@@ -8,14 +8,14 @@
 		'I study at American University Kyiv',
 		'I am interested in game dev',
 		'I like physics and math',
-		'I forgot to put 10th fact there'
+		'I can`t count to 10'
 	];
 </script>
 
-<div class="flex w-full flex-col items-center justify-center p-4">
+<div class="flex  flex-col items-center justify-center p-4">
 	<ol class="flex w-max max-w-2xl list-decimal flex-col items-start gap-3">
 		{#each facts as fact}
-			<li class="ml-20 text-lg">{fact}</li>
+			<li class=" text-2xl">{fact}</li>
 		{/each}
 	</ol>
 </div>

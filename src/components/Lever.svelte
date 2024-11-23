@@ -67,7 +67,7 @@
 />
 <div class="flex w-32 flex-col gap-6">
 	<div
-		class="relative z-[200] box-border flex h-32 w-16 items-center justify-center rounded-r-full border-2 border-l-0 border-base-content/30 bg-secondary/20 shadow-md"
+		class="relative z-[200] box-border flex h-32 w-16 items-center justify-center rounded-r-full border-l-0 border-base-content/30 bg-secondary/20 shadow-md"
 	>
 		<div
 			bind:this={lever}
