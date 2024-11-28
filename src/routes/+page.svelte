@@ -1,20 +1,10 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
 	import Facts from '../components/Facts.svelte';
+	import Game from '../components/Game.svelte';
 	import Lamp from '../components/Lamp.svelte';
 	import ProjectsSection from '../components/ProjectsSection.svelte';
 	import Tyler from '../components/Tyler.svelte';
-	const facts: string[] = [
-		'I started programming when I was 12 years old',
-		'I use vim, btw',
-		'I am really bad at designing things, this website is a proof',
-		'I really really enjoy writing Rust code',
-		'I am from Kyiv, Ukraine',
-		'I study at American University Kyiv',
-		'I am interested in game dev',
-		'I like physics and math',
-		'I forgot to put 10th fact there'
-	];
 
 	function blurAfter(y: number, maxBlur: number = 10) {
 		if (scrollY <= y) return '';
@@ -81,4 +71,5 @@
 		<h2 class="w-min text-right text-7xl text-base-content/30">9 facts about me</h2>
 		<Facts />
 	</div>
+	<Game />
 </div>
