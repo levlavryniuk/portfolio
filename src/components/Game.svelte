@@ -5,12 +5,14 @@
 
 	class Player {
 		private GRAVITY = 0.7;
+		private JUMP_VELOCITY = 4;
+		private MAX_FALL_SPEED = 6;
+		private JETPACK_ACCELERATION = 0.8;
 		private SPEED = 4;
 		private activeKeys: Set<string> = new Set();
-
 		imageSrc = $state<PlayerImageState>('man-stand-right');
 		velocity: { x: number; y: number } = { x: 0, y: 0 };
-		acceleration: { x: number; y: number } = $state({ x: 0, y: -this.GRAVITY });
+		acceleration: { x: number; y: number } = $state({ x: 0, y: 0 });
 		position = $state({ x: 50, y: 0 });
 		isInAir = $derived(() => {
 			return this.position.y > 0;
@@ -39,6 +41,23 @@
 				this.imageSrc = this.imageSrc === 'man-stand-right' ? 'man-walk-right' : 'man-stand-right';
 			}
 		}
+		applyPhysics() {
+			if (!this.isInAir()) {
+				this.velocity.y = 0;
+			} else {
+				this.velocity.y = Math.max(-this.MAX_FALL_SPEED, this.velocity.y - this.GRAVITY);
+			}
+
+			if (this.activeKeys.has(' ') && !this.isInAir()) {
+				this.velocity.y = this.JUMP_VELOCITY;
+			}
+
+			if (this.activeKeys.has(' ') && this.isInAir()) {
+				this.velocity.y += this.JETPACK_ACCELERATION;
+			}
+
+			this.position.y += this.velocity.y;
+		}
 
 		walk() {
 			if (!this.walkingAnimationInterval) {
@@ -53,10 +72,18 @@
 					clearInterval(this.walkingAnimationInterval);
 					this.walkingAnimationInterval = null;
 				}
-				if (!this.isInAir())
+				if (this.isInAir())
 					this.imageSrc = this.velocity.x < 0 ? 'man-walk-left' : 'man-walk-right';
 			}
 			this.updateMovement();
+		}
+
+		applyGravity() {
+			if (this.isInAir()) {
+				this.acceleration.y = -this.GRAVITY;
+			} else {
+				this.acceleration.y = 0;
+			}
 		}
 
 		updateMovement() {
@@ -69,12 +96,11 @@
 				this.walk();
 				this.velocity.x = this.SPEED;
 			}
-			if (this.activeKeys.has(' ') && !this.isInAir()) {
-				this.velocity.y = 10;
-			}
 
-			if (this.activeKeys.has('') && this.isInAir()) {
-				//this.velocity.y = 400;
+			if (this.activeKeys.has('o')) {
+				this.acceleration.y += 10;
+			} else {
+				this.acceleration.y = -this.GRAVITY;
 			}
 		}
 
@@ -89,12 +115,14 @@
 
 		applyAcceleration() {
 			this.velocity.x += this.acceleration.x;
-			if (this.isInAir()) this.velocity.y += this.acceleration.y;
+			let newVel = Math.min(5, this.velocity.y + this.acceleration.y);
+			this.velocity.y = newVel;
 		}
 
 		public gameLoop() {
 			this.interval = setInterval(() => {
-				this.applyAcceleration();
+				this.applyPhysics();
+				//this.applyAcceleration();
 				this.applyVelocity();
 			}, 1000 / 60);
 		}
@@ -120,7 +148,7 @@
 	></div>
 	<div
 		class={`absolute left-20 top-0 size-10 `}
-		class:bg-blue-400={player.isWalking()}
+		class:bg-red-400={player.isWalking()}
 		class:bg-emerald-400={!player.isWalking()}
 	></div>
 	<img
