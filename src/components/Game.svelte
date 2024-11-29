@@ -13,9 +13,11 @@
 		acceleration: { x: number; y: number } = $state({ x: 0, y: -this.GRAVITY });
 		position = $state({ x: 50, y: 0 });
 		isInAir = $derived(() => {
-			return this.velocity.y > 0;
+			return this.position.y > 0;
 		});
-		isWalking = $state(false);
+		isWalking = $derived(() => {
+			return this.velocity.x !== 0;
+		});
 		walkingAnimationInterval = $state<null | number>(null);
 		interval = $state<number | null>(null);
 
@@ -47,12 +49,12 @@
 		handleKeysUp(event: KeyboardEvent) {
 			this.activeKeys.delete(event.key);
 			if (this.activeKeys.size === 0) {
-				this.isWalking = false;
 				if (this.walkingAnimationInterval) {
 					clearInterval(this.walkingAnimationInterval);
 					this.walkingAnimationInterval = null;
 				}
-				if (!this.isInAir) this.imageSrc = this.velocity.x < 0 ? 'man-walk-left' : 'man-walk-right';
+				if (!this.isInAir())
+					this.imageSrc = this.velocity.x < 0 ? 'man-walk-left' : 'man-walk-right';
 			}
 			this.updateMovement();
 		}
@@ -60,12 +62,10 @@
 		updateMovement() {
 			this.velocity.x = 0;
 			if (this.activeKeys.has('a')) {
-				this.isWalking = true;
 				this.walk();
 				this.velocity.x = -this.SPEED;
 			}
 			if (this.activeKeys.has('d')) {
-				this.isWalking = true;
 				this.walk();
 				this.velocity.x = this.SPEED;
 			}
@@ -117,6 +117,11 @@
 		class={`absolute left-0 top-0 size-10 `}
 		class:bg-red-400={player.isInAir()}
 		class:bg-emerald-400={!player.isInAir()}
+	></div>
+	<div
+		class={`absolute left-20 top-0 size-10 `}
+		class:bg-blue-400={player.isWalking()}
+		class:bg-emerald-400={!player.isWalking()}
 	></div>
 	<img
 		src={`/images/${player.imageSrc}.png`}
