@@ -4,8 +4,11 @@
 	let isDragging = $state(false);
 	let lever = $state<HTMLDivElement>();
 	let intervalId = $state<number | null>(null);
-	let { ontrigger, text, disabled }: { ontrigger: () => void; text?: string; disabled: boolean } =
-		$props();
+	let {
+		ontrigger,
+		text,
+		disabled 
+	}: { ontrigger: () => void; text?: string; disabled: boolean } = $props();
 
 	function handleMouseMove(e: MouseEvent) {
 		if (isDragging && lever) {
@@ -67,7 +70,10 @@
 />
 <div class="flex w-32 flex-col gap-6">
 	<div
-		class="relative z-[200] box-border flex h-32 w-16 items-center justify-center rounded-r-full border-l-0 border-base-content/30 bg-secondary/20 shadow-md"
+		class={`relative z-[200] box-border flex h-32 w-16 items-center justify-center rounded-r-full border-l-0 border-base-content/30  shadow-md ${disabled
+			? 'bg-base-300/90'
+			: 'bg-secondary/20'}`}
+		
 	>
 		<div
 			bind:this={lever}

@@ -14,7 +14,7 @@
 
 <div class="flex">
 	<div
-		class=" card w-96 overflow-hidden rounded-2xl rounded-tr-none  border-base-content/30 bg-base-200 shadow-xl transition-all duration-300 hover:shadow-2xl"
+		class=" card w-96 overflow-hidden rounded-2xl rounded-tr-none border-base-content/30 bg-base-200 shadow-xl transition-all duration-300 hover:shadow-2xl"
 	>
 		<!-- Header Section -->
 		<div class="relative">

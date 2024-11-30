@@ -55,7 +55,7 @@
 	<div
 		use:inview={{ unobserveOnEnter: true }}
 		oninview_enter={ontrigger}
-		class="flex h-auto w-fit items-start justify-center gap-20"
+		class="flex flex-col-reverse lg:flex-row h-auto w-fit items-start justify-center gap-20"
 	>
 		<Wheel {isSpinning} {active} bind:wheel hasSpinned={spinCount !== 0} />
 		<ProjectDisplay {isSpinning} {ontrigger} {spinCount} project={active[0]} />

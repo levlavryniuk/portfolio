@@ -174,8 +174,9 @@
 			}
 		}
 		applyHorizontalVelocity() {
-			const minBoundary = window.innerWidth <= 768 ? 50 : 150;
-			const maxBoundary = window.innerWidth - minBoundary;
+			const minBoundary = (window.outerWidth / 100) * 5;
+			const maxBoundary = window.outerWidth - minBoundary * 2;
+			console.log(this.position.x);
 
 			let newPos = Math.max(Math.min(maxBoundary, this.position.x + this.velocity.x), minBoundary);
 			this.position.x = newPos;

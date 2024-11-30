@@ -45,9 +45,10 @@
 	</div>
 
 	<div class="flex h-screen w-screen flex-col items-center bg-base-100">
-		<div class="flex w-full flex-row-reverse items-center justify-center gap-10">
-			<h2 class="relative max-w-[50%] text-left">
-				I specialize on creating bullet-proof<br /> web applications using<br />
+		<div class="flex w-full flex-col items-center justify-center gap-10 lg:flex-row-reverse">
+			<h2 class="relative max-w-[50%] text-center lg:text-left">
+				I specialize on creating bullet-proof<br class="max-lg:hidden" /> web applications using<br
+				/>
 				<span class="bg-gradient-to-r from-blue-400 to-blue-500 bg-clip-text text-transparent"
 					>Typescript</span
 				>

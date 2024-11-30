@@ -65,8 +65,3 @@ justify-center gap-2 bg-gradient-to-t from-base-300 to-base-100"
 	</div>
 </div>
 
-<style>
-	/*.rise-up {*/
-	/*	@apply -translate-y-10 scale-125 bg-black;*/
-	/*}*/
-</style>
