@@ -13,9 +13,6 @@
 		active: Project[];
 		wheel?: HTMLDivElement;
 	} = $props();
-	$effect(() => {
-		console.log(isSpinning);
-	});
 </script>
 
 {#snippet Cover()}

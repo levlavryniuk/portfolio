@@ -21,7 +21,6 @@
 	const username = '0x4c656f';
 
 	const topLangsUrl = `https://github-readme-stats.vercel.app/api/top-langs/?username=${username}&theme=radical&layout=compact`;
-	$effect(() => console.log(scrollY));
 </script>
 
 <svelte:window bind:scrollY />
