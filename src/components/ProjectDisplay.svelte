@@ -12,9 +12,9 @@
 	}: { project: Project; isSpinning: boolean; spinCount: number; ontrigger: () => void } = $props();
 </script>
 
-<div class="flex">
+<div class="relative flex w-80 pl-2">
 	<div
-		class=" card w-96 overflow-hidden rounded-2xl rounded-tr-none border-base-content/30 bg-base-200 shadow-xl transition-all duration-300 hover:shadow-2xl"
+		class=" card w-full overflow-hidden rounded-2xl rounded-tr-none border-base-content/30 border-blue-200 bg-base-200 shadow-xl transition-all duration-300 hover:shadow-2xl lg:w-96"
 	>
 		<!-- Header Section -->
 		<div class="relative">
@@ -47,10 +47,11 @@
 		</div>
 
 		<!-- Content Section -->
-		<div class="card-body">
+		<div class="card-body max-md:px-3">
+			<div class="badge badge-secondary md:hidden">{project.status}</div>
 			<h2 class="card-title justify-start">
 				{project.name}
-				<div class="badge badge-secondary">{project.status}</div>
+				<div class="badge badge-secondary max-md:hidden">{project.status}</div>
 			</h2>
 
 			<p class="text-left text-base-content/80">{project.description}</p>

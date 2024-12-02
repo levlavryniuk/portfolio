@@ -18,17 +18,18 @@
 {#snippet Cover()}
 	<div class="absolute z-50 size-full overflow-hidden rounded-full border-b-2 border-b-secondary">
 		<div
-			class="absolute -right-36 top-20 z-50 size-[300px] rotate-45 rounded-l-full border border-secondary bg-base-100"
+			class="absolute -right-36 top-20 z-50 size-[300px] rotate-45 rounded-l-full border border-secondary bg-base-300"
 		></div>
 		<div
-			class="absolute -left-36 top-20 z-50 size-[300px] rotate-45 rounded-t-full border border-secondary bg-base-100"
+			class="absolute -left-36 top-20 z-50 size-[300px] rotate-45 rounded-t-full border border-secondary bg-base-300"
 		></div>
 		<div
 			class=" absolute top-[45%] z-50 flex h-3/4 w-full items-center
-justify-center gap-2 bg-gradient-to-t from-base-300 to-base-100"
+justify-center gap-2 bg-gradient-to-t from-base-100 to-base-300"
 		></div>
 	</div>
 {/snippet}
+
 <div class="relative box-border size-[500px] rounded-full border-base-200 shadow-lg">
 	{@render Cover()}
 	<div
@@ -64,4 +65,3 @@ justify-center gap-2 bg-gradient-to-t from-base-300 to-base-100"
 		{/each}
 	</div>
 </div>
-
