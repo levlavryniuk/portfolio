@@ -111,5 +111,4 @@
 	</div>
 
 	<Lever {ontrigger} disabled={isSpinning} text={!isSpinning && spinCount < 2 ? 'Pull me!' : ''} />
-	<RedButton {ontrigger} />
 </div>

@@ -49,7 +49,7 @@ justify-center gap-2 bg-gradient-to-t from-base-100 to-base-300"
 				style={`transform: ${riseup} rotate(${calculateRotationForIndex(index)}deg)`}
 				class:hidden={!isSpinning && index !== 0}
 				class:riseup-mobile={!isSpinning && index === 0}
-				class:risedown-mobile={!isSpinning && index === 1}
+				class:risedown-mobile={isSpinning}
 			>
 				<div class="text-md mb-6 flex items-center gap-2 text-center text-base-content/60">
 					{#if hasSpinned}
@@ -72,5 +72,8 @@ justify-center gap-2 bg-gradient-to-t from-base-100 to-base-300"
 <style>
 	.riseup-mobile {
 		@apply max-md:-top-4;
+	}
+	.risedown-mobile {
+		@apply pt-8;
 	}
 </style>

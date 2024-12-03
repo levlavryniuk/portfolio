@@ -3,6 +3,7 @@
 	import { inview } from 'svelte-inview';
 	import ProjectDisplay from './ProjectDisplay.svelte';
 	import Wheel from './Wheel.svelte';
+	import RedButton from './RedButton.svelte';
 
 	let isSpinning = $state(false);
 	let wheel = $state<HTMLDivElement>();
@@ -55,9 +56,10 @@
 	<div
 		use:inview={{ unobserveOnEnter: true }}
 		oninview_enter={ontrigger}
-		class="flex h-auto w-fit flex-col-reverse items-center justify-center gap-20 lg:flex-row lg:items-start"
+		class="flex h-auto w-fit flex-col-reverse items-center justify-center gap-10 md:gap-20 lg:flex-row lg:items-start"
 	>
 		<Wheel {isSpinning} {active} bind:wheel hasSpinned={spinCount !== 0} />
+		<RedButton {ontrigger} />
 		<ProjectDisplay {isSpinning} {ontrigger} {spinCount} project={active[0]} />
 	</div>
 </div>

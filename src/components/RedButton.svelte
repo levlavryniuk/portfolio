@@ -16,7 +16,9 @@
 	}
 </script>
 
-<div class="flex size-24 -scale-y-[75%] items-center justify-center rounded-full bg-secondary/30">
+<div
+	class="flex size-24 -scale-y-[75%] items-center justify-center rounded-full bg-secondary/30 md:hidden"
+>
 	<div class="relative size-14">
 		<button
 			aria-label="Wheel trigger button"

@@ -25,7 +25,7 @@
 
 <svelte:window bind:scrollY />
 
-<div class="flex flex-col gap-20 overflow-x-hidden px-4">
+<div class="flex flex-col overflow-x-hidden px-4">
 	<div class="flex min-h-screen items-center justify-center bg-base-100">
 		<Tyler></Tyler>
 		<Lamp />
@@ -44,9 +44,9 @@
 		{/if}
 	</div>
 
-	<div class="flex h-screen w-full flex-col items-center bg-base-100">
+	<div class="flex h-screen w-full flex-col items-center justify-center bg-base-100">
 		<div class="flex w-full flex-col items-center justify-center gap-10 lg:flex-row-reverse">
-			<h2 class="relative w-full text-center md:max-w-[50%] lg:text-left">
+			<h2 class="relative w-full text-center md:w-fit md:max-w-[50%] lg:text-left">
 				I specialize on creating bullet-proof<br class="max-lg:hidden" /> web applications using<br
 				/>
 				<span class="bg-gradient-to-r from-blue-400 to-blue-500 bg-clip-text text-transparent"
