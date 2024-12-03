@@ -3,6 +3,7 @@
 	import Facts from '../components/Facts.svelte';
 	import Game from '../components/Game.svelte';
 	import Lamp from '../components/Lamp.svelte';
+	import Funny from '../components/Funny.svelte';
 	import ProjectsSection from '../components/ProjectsSection.svelte';
 	import Tyler from '../components/Tyler.svelte';
 
@@ -69,4 +70,5 @@
 
 	<Facts />
 	<Game />
+	<Funny />
 </div>
