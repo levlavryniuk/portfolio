@@ -69,7 +69,7 @@
 
 			<!-- Features -->
 			{#if project.features && project.features.length > 0}
-				<div class="collapse collapse-arrow bg-base-200" transition:fade>
+				<div class="collapse collapse-arrow bg-transparent" transition:fade>
 					<input type="checkbox" />
 					<div class="collapse-title pl-0 text-sm font-semibold uppercase text-base-content/60">
 						Features
