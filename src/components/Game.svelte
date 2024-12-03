@@ -19,6 +19,26 @@
 		private canJetpack = false;
 		private spaceHitCount = 0;
 
+		handleOrientation(event?: DeviceOrientationEvent) {
+			if (event) {
+				const angle = event.gamma;
+				if (!angle) {
+					return;
+				} else {
+					if (angle > 5) {
+						this.handleKeysUp({ key: 'a' } as KeyboardEvent);
+						this.handleKeysDown({ key: 'd' } as KeyboardEvent);
+					} else if (angle < -5) {
+						this.handleKeysUp({ key: 'd' } as KeyboardEvent);
+						this.handleKeysDown({ key: 'a' } as KeyboardEvent);
+					} else {
+						this.handleKeysUp({ key: 'd' } as KeyboardEvent);
+						this.handleKeysUp({ key: 'a' } as KeyboardEvent);
+					}
+				}
+			}
+		}
+
 		isJetpacking = $state(false);
 		activeKeys: Set<string> = new Set();
 		imageSrc = $state<PlayerImageState>('man-stand-right');
@@ -208,6 +228,7 @@
 <svelte:window
 	onkeyupcapture={(e) => game.handleKeysUp(e)}
 	onkeydowncapture={(e) => game.handleKeysDown(e)}
+	ondeviceorientationabsolute={(e) => game.handleOrientation(e)}
 />
 
 <div class="relative flex h-60 flex-col justify-end">
