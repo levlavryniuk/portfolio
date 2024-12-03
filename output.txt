@@ -1,0 +1,1466 @@
+
+ File path: ./svelte.config.js 
+ 
+import adapter from '@sveltejs/adapter-auto';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+	// Consult https://svelte.dev/docs/kit/integrations
+	// for more information about preprocessors
+	preprocess: vitePreprocess(),
+
+	kit: {
+		// adapter-auto only supports some environments, see https://svelte.dev/docs/kit/adapter-auto for a list.
+		// If your environment is not supported, or you settled on a specific environment, switch out the adapter.
+		// See https://svelte.dev/docs/kit/adapters for more information about adapters.
+		adapter: adapter()
+	}
+};
+
+export default config;
+
+ File path: ./tailwind.config.ts 
+ 
+import type { Config } from 'tailwindcss';
+import daisyui from 'daisyui';
+
+export default {
+	content: ['./src/**/*.{html,js,svelte,ts}'],
+
+	daisyui: {
+		themes: ["sunset",'wireframe']
+	},
+	theme: {
+		extend: {
+			fontFamily: {
+				inter: 'Inter'
+			}
+		}
+	},
+
+	plugins: [daisyui]
+} satisfies Config;
+
+ File path: ./tsconfig.json 
+ 
+{
+	"extends": "./.svelte-kit/tsconfig.json",
+	"compilerOptions": {
+		"allowJs": true,
+		"checkJs": true,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"resolveJsonModule": true,
+		"skipLibCheck": true,
+		"sourceMap": true,
+		"strict": true,
+		"moduleResolution": "bundler"
+	}
+	// Path aliases are handled by https://svelte.dev/docs/kit/configuration#alias
+	// except $lib which is handled by https://svelte.dev/docs/kit/configuration#files
+	//
+	// If you want to overwrite includes/excludes, make sure to copy over the relevant includes/excludes
+	// from the referenced tsconfig.json - TypeScript does not merge them in
+}
+
+ File path: ./package.json 
+ 
+{
+	"name": "portfolio",
+	"version": "0.0.1",
+	"type": "module",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"format": "prettier --write .",
+		"lint": "prettier --check ."
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^3.0.0",
+		"@sveltejs/adapter-node": "^5.2.9",
+		"@sveltejs/kit": "^2.0.0",
+		"@sveltejs/vite-plugin-svelte": "^4.0.0",
+		"autoprefixer": "^10.4.20",
+		"daisyui": "^4.12.14",
+		"prettier": "^3.3.2",
+		"prettier-plugin-svelte": "^3.2.6",
+		"prettier-plugin-tailwindcss": "^0.6.5",
+		"svelte": "^5.0.0",
+		"svelte-check": "^4.0.0",
+		"tailwindcss": "^3.4.9",
+		"typescript": "^5.0.0",
+		"vite": "^5.0.3"
+	},
+	"dependencies": {
+		"@iconify/svelte": "^4.0.2",
+		"svelte-inview": "^4.0.4"
+	}
+}
+
+ File path: ./postcss.config.js 
+ 
+export default {
+	plugins: {
+		tailwindcss: {},
+		autoprefixer: {}
+	}
+};
+
+ File path: ./vite.config.ts 
+ 
+import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+	plugins: [sveltekit()]
+});
+
+ File path: ./.prettierrc 
+ 
+{
+	"useTabs": true,
+	"singleQuote": true,
+	"trailingComma": "none",
+	"printWidth": 100,
+	"plugins": ["prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
+	"overrides": [
+		{
+			"files": "*.svelte",
+			"options": {
+				"parser": "svelte"
+			}
+		}
+	]
+}
+
+ File path: ./src/lib/player.svelte.ts 
+ 
+
+ File path: ./src/lib/index.ts 
+ 
+
+ File path: ./src/lib/wheel.ts 
+ 
+export type Project = {
+	id: number;  
+	name: string;
+	description: string;
+	technologies: string[];
+	status: string;
+	features?: string[];
+	repositoryUrls?: string[];
+	websiteUrl?: string;
+	logoUrl?: string;
+};
+export const projects: Project[] = [
+	{
+		id: 1,
+		name: 'Cleverize',
+		description: 'AI-powered learning tool for programmers',
+		technologies: ['Next.js', 'Nest.js', 'MongoDB', 'TailwindCSS'],
+		status: 'Finished',
+		features: [
+			'AI learning roadmap generation',
+			'AI lessons generation',
+			'Authentication',
+			'Credits payment system'
+		],
+		repositoryUrls: [
+			'https://github.com/0x4C656F/cleverize-backend',
+			'https://github.com/0x4C656F/cleverize-frontend'
+		],
+		websiteUrl: '', 
+		logoUrl: '/images/cleverize.webp'
+	},
+	{
+		id: 2,
+		name: 'Kins West Trading',
+		description: 'Visit card for a furniture shipping company',
+		technologies: ['SvelteKit', 'TailwindCSS'],
+		status: 'Finished',
+		websiteUrl: 'https://www.kins-west.co.uk/'
+	},
+	{
+		id: 3,
+		name: 'Fundament Trezvosti',
+		description: 'A website selling courses on how to beat alcohol and drug addictions.',
+		technologies: ['Next.js', 'TailwindCSS', 'MonoPay', 'Nodemailer'],
+		status: 'Finished',
+		features: ['Payment system', 'Success emails'],
+		logoUrl: '/images/fundament-trezvosti.png',
+		websiteUrl: 'https://www.fundament-trezvosti.com/'
+	},
+	{
+		id: 4,
+		name: 'No name',
+		description: 'A website for a restaurant',
+		technologies: ['SvelteKit', 'Supabase', 'TailwindCSS'],
+		status: 'In progress',
+		features: ['Table reservation system']
+	},
+	{
+		id: 5,
+		name: 'Bunny-ts',
+		description: 'A Nest.js-like Bun framework',
+		technologies: ['TypeScript', 'reflect-metadata'],
+		status: 'On hold',
+		features: [
+			'Dependency Injection system',
+			'Middlewares',
+			'Guards',
+			'Modules/Controllers/Services',
+			'Working CLI'
+		],
+		repositoryUrls: [
+			'https://github.com/orgs/bunny-ts',
+			'https://www.npmjs.com/package/@bunny-ts/core'
+		]
+	}
+];
+
+export function calculateRotationForIndex(index: number, totalItems: number = 4): number {
+	return (360 / totalItems) * index;
+}
+
+ File path: ./src/app.d.ts 
+ 
+// See https://svelte.dev/docs/kit/types#app.d.ts
+// for information about these interfaces
+declare global {
+	namespace App {
+		// interface Error {}
+		// interface Locals {}
+		// interface PageData {}
+		// interface PageState {}
+		// interface Platform {}
+	}
+}
+
+export {};
+
+ File path: ./src/components/Tyler.svelte 
+ 
+<script lang="ts">
+	import { onMount } from 'svelte';
+
+	let show = $state(false);
+
+	onMount(() =>
+		setTimeout(() => {
+			show = !show;
+			setTimeout(() => (show = !show), 55);
+		}, 9000)
+	);
+</script>
+
+{#if show}
+	<div class="fixed left-0 top-0 flex h-screen w-screen items-end justify-start">
+		<img src="/images/tyler.png" alt="Tyler Durden" />
+	</div>
+{/if}
+
+ File path: ./src/components/Facts.svelte 
+ 
+<script>
+	const facts = [
+		'I started programming when I was 12 years old',
+		'I use vim, btw',
+		'I am really bad at designing things, this website is a proof',
+		'I really really enjoy writing Rust code',
+		'I am from Kyiv, Ukraine',
+		'I study at American University Kyiv',
+		'I am interested in game dev',
+		'I like physics and math',
+		'I can`t count to 10'
+	];
+</script>
+
+<div class="flex  flex-col items-center justify-center p-4">
+	<ol class="flex w-max max-w-2xl list-decimal flex-col items-start gap-3">
+		{#each facts as fact}
+			<li class=" text-2xl">{fact}</li>
+		{/each}
+	</ol>
+</div>
+
+ File path: ./src/components/Game.svelte 
+ 
+<script lang="ts">
+	import { onMount } from 'svelte';
+	import Particles from './Particles.svelte';
+
+	type PlayerImageState =
+		| 'man-stand-right'
+		| 'man-stand-left'
+		| 'man-walk-right'
+		| 'man-walk-left'
+		| 'man-jetpack-left'
+		| 'man-jetpack-right';
+	class Game {
+		private GRAVITY = 0.4;
+		private JUMP_VELOCITY = 7;
+		private MAX_FALL_SPEED = 12;
+		private JETPACK_ACCELERATION = 0.5;
+		private SPEED = 4;
+
+		private canJetpack = false;
+		private spaceHitCount = 0;
+
+		isJetpacking = $state(false);
+		activeKeys: Set<string> = new Set();
+		imageSrc = $state<PlayerImageState>('man-stand-right');
+		velocity: { x: number; y: number } = { x: 0, y: 0 };
+		acceleration: { x: number; y: number } = $state({ x: 0, y: 0 });
+		position = $state({ x: 50, y: 0 });
+		isInAir = $derived(() => {
+			return this.position.y > 0;
+		});
+		isWalking = $derived(() => {
+			if (this.isInAir()) return false;
+			return this.velocity.x !== 0;
+		});
+		walkingAnimationInterval = $state<null | number>(null);
+		interval = $state<number | null>(null);
+
+		private updateImageState() {
+			if (this.isJetpacking) {
+				if (this.velocity.x !== 0)
+					this.imageSrc = this.velocity.x > 0 ? 'man-jetpack-right' : 'man-jetpack-left';
+				return;
+			}
+
+			if (this.isInAir()) {
+				if (this.velocity.x !== 0)
+					this.imageSrc = this.velocity.x >= 0 ? 'man-walk-right' : 'man-walk-left';
+				return;
+			}
+			if (this.isWalking()) {
+				return;
+			}
+			//if (this.velocity.x < 0) {
+			//	this.imageSrc = this.imageSrc === 'man-stand-left' ? 'man-walk-left' : 'man-stand-left';
+			//} else if (this.velocity.x > 0) {
+			//	this.imageSrc = this.imageSrc === 'man-stand-right' ? 'man-walk-right' : 'man-stand-right';
+			//}
+		}
+		handleKeysDown(event: KeyboardEvent) {
+			this.activeKeys.add(event.key);
+
+			if (event.key === 'w') {
+				this.spaceHitCount++;
+			}
+
+			if (this.spaceHitCount === 1) {
+				this.canJetpack = true;
+			}
+
+			this.updateMovement();
+		}
+
+		toggleWalkingState() {
+			if (this.isInAir()) {
+				this.velocity.x > 0
+					? (this.imageSrc = 'man-walk-right')
+					: (this.imageSrc = 'man-walk-left');
+				return;
+			}
+			if (this.velocity.x < 0) {
+				this.imageSrc = this.imageSrc === 'man-stand-left' ? 'man-walk-left' : 'man-stand-left';
+			} else if (this.velocity.x > 0) {
+				this.imageSrc = this.imageSrc === 'man-stand-right' ? 'man-walk-right' : 'man-stand-right';
+			}
+		}
+		applyPhysics() {
+			if (!this.isInAir()) {
+				this.velocity.y = 0;
+				this.canJetpack = false;
+				this.spaceHitCount = 0;
+			} else {
+				this.velocity.y = Math.max(-this.MAX_FALL_SPEED, this.velocity.y - this.GRAVITY);
+			}
+
+			if (this.activeKeys.has('w') && !this.isInAir() && !this.isJetpacking) {
+				this.isJetpacking = false;
+				this.canJetpack = false;
+				this.spaceHitCount = 0;
+				this.velocity.y = this.JUMP_VELOCITY;
+			}
+			if (this.activeKeys.has('w') && this.isInAir() && this.canJetpack) {
+				this.velocity.y += this.JETPACK_ACCELERATION;
+				this.isJetpacking = true;
+			} else {
+				this.isJetpacking = false;
+			}
+
+			if (this.position.y > 600) {
+				this.velocity.y = -this.GRAVITY;
+				this.acceleration.y = -this.GRAVITY;
+			}
+			this.position.y += this.velocity.y;
+			this.updateImageState();
+		}
+
+		standStillIfIdle() {
+			if (this.isInAir() || this.activeKeys.size !== 0 || this.velocity.x !== 0) return;
+			if (this.imageSrc === 'man-walk-right') {
+				this.imageSrc = 'man-stand-right';
+			}
+			if (this.imageSrc === 'man-walk-left') {
+				this.imageSrc = 'man-stand-left';
+			}
+		}
+		walk() {
+			if (!this.walkingAnimationInterval) {
+				this.walkingAnimationInterval = setInterval(() => this.toggleWalkingState(), 150);
+			}
+		}
+
+		handleKeysUp(event: KeyboardEvent) {
+			this.activeKeys.delete(event.key);
+
+			if (event.key === 'w' && this.activeKeys.size === 0) {
+				this.spaceHitCount = 0;
+				this.canJetpack = false;
+			}
+			if (this.activeKeys.size === 0) {
+				if (this.walkingAnimationInterval) {
+					clearInterval(this.walkingAnimationInterval);
+					this.walkingAnimationInterval = null;
+				}
+			}
+			this.updateMovement();
+		}
+
+		applyGravity() {
+			if (this.isInAir()) {
+				this.acceleration.y = -this.GRAVITY;
+			} else {
+				this.acceleration.y = 0;
+			}
+		}
+
+		public isKeyPressed = $derived((k: string) => {
+			return this.activeKeys.has(k);
+		});
+
+		updateMovement() {
+			this.velocity.x = 0;
+			if (this.activeKeys.has('a')) {
+				this.velocity.x = -this.SPEED;
+				this.walk();
+			}
+			if (this.activeKeys.has('d')) {
+				this.velocity.x = this.SPEED;
+				this.walk();
+			}
+
+			if (this.activeKeys.has('o')) {
+				this.acceleration.y += 10;
+			} else {
+				this.acceleration.y = -this.GRAVITY;
+			}
+		}
+		applyHorizontalVelocity() {
+			const minBoundary = (window.outerWidth / 100) * 5;
+			const maxBoundary = window.outerWidth - minBoundary * 2;
+			console.log(this.position.x);
+
+			let newPos = Math.max(Math.min(maxBoundary, this.position.x + this.velocity.x), minBoundary);
+			this.position.x = newPos;
+		}
+
+		public gameLoop() {
+			this.interval = setInterval(() => {
+				this.applyPhysics();
+				this.applyHorizontalVelocity();
+				this.standStillIfIdle();
+			}, 1000 / 60);
+		}
+	}
+	let game = new Game();
+
+	onMount(() => {
+		game.gameLoop();
+	});
+	let facingDirection = $derived(() => {
+		if (game.imageSrc === 'man-jetpack-right') {
+			return 'right';
+		} else if (game.imageSrc === 'man-jetpack-left') {
+			return 'left';
+		}
+		return 'left';
+	});
+</script>
+
+<svelte:window
+	onkeyupcapture={(e) => game.handleKeysUp(e)}
+	onkeydowncapture={(e) => game.handleKeysDown(e)}
+/>
+
+<div class="relative flex h-60 flex-col justify-end">
+	<div class=" mb-32 flex h-32 w-60 flex-col items-center justify-center gap-2">
+		<div class="flex items-center justify-center gap-2">
+			<kbd
+				class="kbd kbd-lg"
+				class:active={game.isKeyPressed(' ')}
+				ontouchend={() => {
+					game.handleKeysUp({ key: 'w' } as KeyboardEvent);
+				}}
+				ontouchstart={() => {
+					game.handleKeysDown({ key: 'w' } as KeyboardEvent);
+				}}>w</kbd
+			>
+		</div>
+		<div class="flex items-center justify-center gap-2">
+			<kbd
+				class="kbd kbd-lg"
+				ontouchend={() => {
+					game.handleKeysUp({ key: 'a' } as KeyboardEvent);
+				}}
+				ontouchstart={() => {
+					game.handleKeysDown({ key: 'a' } as KeyboardEvent);
+				}}
+				class:active={game.isKeyPressed('a')}>a</kbd
+			>
+			<kbd class="kbd" class:active={game.isKeyPressed(' ')}>{' '}</kbd>
+			<kbd
+				class="kbd kbd-lg"
+				ontouchend={() => {
+					game.handleKeysUp({ key: 'd' } as KeyboardEvent);
+				}}
+				ontouchstart={() => {
+					game.handleKeysDown({ key: 'd' } as KeyboardEvent);
+				}}
+				style:backgroundColor={game.isKeyPressed('d') ? 'white' : 'white'}>d</kbd
+			>
+		</div>
+		<div class="flex w-full items-center justify-center text-base-content/30">
+			<p class="text-xs">
+				Hint: Press <kbd class="kbd kbd-xs mx-2">w</kbd> to activate jetpack
+			</p>
+		</div>
+	</div>
+	<img
+		src={`/images/${game.imageSrc}.png`}
+		alt="player"
+		style:bottom={game.position.y + 16 * 3 + 'px'}
+		style:left={game.position.x + 'px'}
+		class="absolute left-16 z-50 h-32 w-16"
+	/>
+	<Particles {facingDirection} bind:enabled={game.isJetpacking} bind:position={game.position} />
+	<div
+		class="absolute -left-4 flex h-16 w-screen bg-[url('/images/grass.png')] bg-cover md:bg-contain"
+	></div>
+</div>
+
+<style>
+	.active {
+		@apply bg-primary;
+	}
+</style>
+
+ File path: ./src/components/ProjectDisplay.svelte 
+ 
+<script lang="ts">
+	import type { Project } from '$lib/wheel';
+	import Icon from '@iconify/svelte';
+	import { fade } from 'svelte/transition';
+	import Lever from './Lever.svelte';
+
+	let {
+		project,
+		ontrigger,
+		spinCount,
+		isSpinning
+	}: { project: Project; isSpinning: boolean; spinCount: number; ontrigger: () => void } = $props();
+</script>
+
+<div class="relative flex w-80 pl-2">
+	<div
+		class=" card w-full overflow-hidden rounded-2xl rounded-tr-none border-base-content/30 border-blue-200 bg-base-200 shadow-xl transition-all duration-300 hover:shadow-2xl lg:w-96"
+	>
+		<!-- Header Section -->
+		<div class="relative">
+			{#if isSpinning}
+				<div
+					class="absolute inset-0 z-10 flex items-center justify-center bg-base-300/80 backdrop-blur-sm"
+				>
+					<div class="loading loading-spinner loading-lg text-primary"></div>
+				</div>
+			{/if}
+
+			<figure class="relative h-32 bg-gradient-to-r from-primary/20 to-secondary/20">
+				{#if project.logoUrl}
+					<img
+						src={project.logoUrl}
+						alt={project.name}
+						class="absolute left-1/2 top-1/2 size-24 -translate-x-1/2 -translate-y-1/2 rounded-full border-4 border-base-100 bg-base-100 object-cover shadow-lg"
+					/>
+				{:else}
+					<div
+						class="absolute left-1/2 top-1/2 size-24 -translate-x-1/2 -translate-y-1/2 rounded-full border-4 border-base-100 bg-primary shadow-lg"
+					>
+						<Icon
+							icon="lucide:folder"
+							class="absolute left-1/2 top-1/2 size-12 -translate-x-1/2 -translate-y-1/2 text-primary-content"
+						/>
+					</div>
+				{/if}
+			</figure>
+		</div>
+
+		<!-- Content Section -->
+		<div class="card-body max-md:px-3">
+			<div class="badge badge-secondary lg:hidden">{project.status}</div>
+			<h2 class="card-title justify-start">
+				{project.name}
+				<div class="badge badge-secondary max-lg:hidden">{project.status}</div>
+			</h2>
+
+			<p class="text-left text-base-content/80">{project.description}</p>
+
+			<!-- Technologies -->
+			<div class="mt-4">
+				<h3 class="mb-2 text-sm font-semibold uppercase text-base-content/60">Technologies</h3>
+				<div class="flex flex-wrap gap-2">
+					{#each project.technologies as tech}
+						<span class=" badge badge-accent badge-outline">{tech}</span>
+					{/each}
+				</div>
+			</div>
+
+			<!-- Features -->
+			{#if project.features && project.features.length > 0}
+				<div class="collapse collapse-arrow bg-base-200" transition:fade>
+					<input type="checkbox" />
+					<div class="collapse-title pl-0 text-sm font-semibold uppercase text-base-content/60">
+						Features
+					</div>
+					<div class="collapse-content">
+						<ul class="list-inside list-disc space-y-1">
+							{#each project.features as feature}
+								<li class="text-sm text-base-content/80">{feature}</li>
+							{/each}
+						</ul>
+					</div>
+				</div>
+			{/if}
+
+			<!-- Links -->
+			<div class="card-actions mt-4 justify-start">
+				{#if project.websiteUrl}
+					<a
+						href={project.websiteUrl}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="btn btn-primary"
+					>
+						<Icon icon="lucide:globe" class="size-5" />
+						Website
+					</a>
+				{/if}
+
+				{#if project.repositoryUrls && project.repositoryUrls.length > 0}
+					{#each project.repositoryUrls as repoUrl}
+						<a href={repoUrl} target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+							<Icon icon="lucide:github" class="size-5" />
+							Repository
+						</a>
+					{/each}
+				{/if}
+			</div>
+		</div>
+	</div>
+	<Lever {ontrigger} disabled={isSpinning} text={!isSpinning && spinCount < 2 ? 'Pull me!' : ''} />
+</div>
+
+ File path: ./src/components/RedButton.svelte 
+ 
+<script lang="ts">
+</script>
+
+<div class="flex size-24 -scale-y-[75%] items-center justify-center rounded-full bg-secondary/30">
+	<div class="relative size-14">
+		<button
+			aria-label="Wheel trigger button"
+			class="peer relative z-10 size-14 translate-y-4 -scale-y-[80%] cursor-pointer rounded-full bg-accent/70 transition-all active:translate-y-0"
+		>
+		</button>
+		<span
+			class="absolute -top-1 left-0 -z-10 h-[72px] w-14 scale-y-[-80%] rounded-full bg-accent-content/60 transition-all peer-active:h-14"
+		></span>
+	</div>
+</div>
+
+<style>
+</style>
+
+
+ File path: ./src/components/Lever.svelte 
+ 
+<script lang="ts">
+	import Icon from '@iconify/svelte';
+
+	let isDragging = $state(false);
+	let lever = $state<HTMLDivElement>();
+	let intervalId = $state<number | null>(null);
+	let {
+		ontrigger,
+		text,
+		disabled 
+	}: { ontrigger: () => void; text?: string; disabled: boolean } = $props();
+
+	function handleMouseMove(e: MouseEvent) {
+		if (isDragging && lever) {
+			if (intervalId !== null) {
+				clearInterval(intervalId);
+				intervalId = null;
+			}
+			if (disabled) {
+				return;
+			}
+
+			const rect = lever.parentElement?.getBoundingClientRect();
+			if (!rect) return;
+
+			const centerY = rect.top + rect.height / 2;
+			const mouseY = e.clientY - centerY;
+			const angle = 90 + (mouseY / rect.height) * 90;
+			const clampedAngle = Math.min(135, Math.max(45, angle));
+
+			lever.style.rotate = `${clampedAngle}deg`;
+		} else {
+			let angle = Number(lever?.style.rotate.replace('deg', ''));
+
+			if (intervalId === null && lever) {
+				intervalId = setInterval(() => {
+					if (lever) {
+						const angle = Number(lever.style.rotate.replace('deg', ''));
+						if (angle <= 45) {
+							intervalId && clearInterval(intervalId);
+							intervalId = null;
+							return;
+						}
+						const newAngle = angle - 1;
+						lever.style.rotate = `${Math.max(45, newAngle)}deg`;
+					}
+				}, 10);
+				if (angle >= 135) {
+					ontrigger();
+				}
+			}
+		}
+	}
+
+	$effect(() => {
+		return () => {
+			if (intervalId !== null) {
+				clearInterval(intervalId);
+				intervalId = null;
+			}
+		};
+	});
+</script>
+
+<svelte:window
+	onmousemove={handleMouseMove}
+	onmouseupcapture={() => {
+		isDragging = false;
+	}}
+/>
+<div class="flex w-32 flex-col left-full border-red-400 absolute gap-6  ">
+	<div
+		class={`relative z-[200] box-border flex h-32 w-16 items-center justify-center rounded-r-full border-l-0 border-base-content/30  shadow-md ${disabled
+			? 'bg-base-300/90'
+			: 'bg-secondary/20'}`}
+		
+	>
+		<div
+			bind:this={lever}
+			style="rotate: 45deg;"
+			class=" absolute -top-[75px] left-1/2 z-50 box-border h-36 w-2 origin-bottom-left -translate-x-1.5 bg-base-content transition-all"
+		>
+			<div
+				onmousedowncapture={() => {
+					isDragging = true;
+				}}
+				class:cursor-not-allowed={disabled}
+				class="border-l-2-950 cursor- absolute -top-5 left-1/2 size-8 -translate-x-1/2 cursor-move rounded-full border-b border-l border-r border-t-2 border-b-red-800 border-l-red-800 border-r-red-800 border-t-red-400 bg-red-500"
+			></div>
+		</div>
+		<div
+			class="absolute left-1/2 top-1/2 h-1/3 w-1/2 -translate-x-1/2 -translate-y-1/2 bg-base-100/40"
+		></div>
+		<div
+			class="absolute left-1/3 top-1/2 z-50 h-1/4 w-2 -translate-y-1/2 translate-x-1.5 bg-black"
+		></div>
+		<div
+			class="absolute left-1/3 top-1/2 z-10 h-1/4 w-2 -translate-y-1/2 translate-x-2 bg-black"
+		></div>
+	</div>
+	<div class="ml-2 flex animate-bounce items-center gap-2 text-lg text-base-content/60">
+		{#if text}
+			<Icon icon="mdi:info" class="text-base-content/60" />
+			<p class="font-semibold text-base-content/60">{text}</p>
+		{/if}
+	</div>
+</div>
+
+ File path: ./src/components/Lamp.svelte 
+ 
+<script lang="ts">
+	let isOn = $state(true);
+	let clickCounter = $state(0);
+
+	function toggleLamp() {
+		isOn = !isOn;
+		clickCounter++;
+		if (clickCounter > 6) {
+			setTimeout(() => {
+				clickCounter = 0;
+			}, 2000);
+		}
+		window.document.documentElement.setAttribute('data-theme', !isOn ? 'wireframe' : 'sunset');
+	}
+</script>
+
+<div
+	id="lampadario"
+	style:transform={`${clickCounter > 6 ? 'translateY(-200%)' : ''}`}
+	class="transition-transform duration-1000"
+>
+	<input type="radio" name="switch" value="on" checked={true} onchange={toggleLamp} />
+	<input type="radio" name="switch" value="off" checked={false} onchange={toggleLamp} />
+	<label for="switch" class="border-l cursor-pointer bg-base-200/80"></label>
+	<div id="filo"></div>
+</div>
+
+<style>
+	#lampadario {
+		@apply absolute right-1/3 top-0;
+	}
+	#filo {
+		@apply relative left-2/4 z-[1] -ml-px h-[150px] w-0.5 origin-[0%_0%] bg-black after:absolute after:left-[-3px] after:top-full after:h-0 after:w-1 after:border-x-4 after:border-b-[15px] after:border-solid after:border-x-transparent after:border-b-black after:content-["_"];
+		animation: oscillaFilo 0.9s ease-in-out 0s infinite alternate;
+		-webkit-transform-origin: 0% 0%;
+		-moz-transform-origin: 0% 0%;
+		-ms-transform-origin: 0% 0%;
+		-o-transform-origin: 0% 0%;
+		-webkit-animation: oscillaFilo 0.9s ease-in-out 0s infinite alternate;
+		-moz-animation: oscillaFilo 0.9s ease-in-out 0s infinite alternate;
+		-ms-animation: oscillaFilo 0.9s ease-in-out 0s infinite alternate;
+		-o-animation: oscillaFilo 0.9s ease-in-out 0s infinite alternate;
+	}
+	input[value='off']:checked ~ #filo {
+		@apply shadow-[-80px_-10px_7px_0_rgba(0,0,0,0.1)];
+		-webkit-box-shadow: -80px -10px 7px 0 rgba(0, 0, 0, 0.1);
+		-moz-box-shadow: -80px -10px 7px 0 rgba(0, 0, 0, 0.1);
+		-ms-box-shadow: -80px -10px 7px 0 rgba(0, 0, 0, 0.1);
+		-o-box-shadow: -80px -10px 7px 0 rgba(0, 0, 0, 0.1);
+	}
+	input[value='off']:checked ~ #filo:after {
+		@apply shadow-[-80px_-10px_10px_-2px_rgba(0,0,0,0.1)];
+		-webkit-box-shadow: -80px -10px 10px -2px rgba(0, 0, 0, 0.1);
+		-moz-box-shadow: -80px -10px 10px -2px rgba(0, 0, 0, 0.1);
+		-ms-box-shadow: -80px -10px 10px -2px rgba(0, 0, 0, 0.1);
+		-o-box-shadow: -80px -10px 10px -2px rgba(0, 0, 0, 0.1);
+	}
+	input {
+		@apply absolute top-[150px] z-[1] ml-[-45px] h-[70px] w-[90px] cursor-pointer opacity-0;
+	}
+	input[value='on'] {
+		@apply top-[150px] checked:top-[-100px];
+	}
+	input[value='off'] {
+		@apply top-[-100px];
+	}
+	input[value='on']:checked + input[value='off'] {
+		@apply top-[150px];
+	}
+	label {
+		@apply absolute left-0 top-[164px] -ml-6 h-[51px] w-[51px] rounded-full;
+		-webkit-border-radius: 100%;
+		animation: oscillaLampadina 0.9s ease-in-out 0s infinite alternate;
+		-moz-border-radius: 100%;
+		-ms-border-radius: 100%;
+		-o-border-radius: 100%;
+		-webkit-animation: oscillaLampadina 0.9s ease-in-out 0s infinite alternate;
+		-moz-animation: oscillaLampadina 0.9s ease-in-out 0s infinite alternate;
+		-ms-animation: oscillaLampadina 0.9s ease-in-out 0s infinite alternate;
+		-o-animation: oscillaLampadina 0.9s ease-in-out 0s infinite alternate;
+	}
+	input[value='off']:checked ~ label {
+		@apply shadow-[inset_0px_1px_5px_rgba(255,255,255,0.1),inset_0px_2px_20px_rgba(255,255,255,0.07),-80px_-15px_15px_-5px_rgba(0,0,0,0.1)];
+		background: rgba(255, 255, 255, 0.03);
+		-webkit-box-shadow:
+			inset 0px 1px 5px rgba(255, 255, 255, 0.1),
+			inset 0px 2px 20px rgba(255, 255, 255, 0.07),
+			-80px -15px 15px -5px rgba(0, 0, 0, 0.1);
+		-moz-box-shadow:
+			inset 0px 1px 5px rgba(255, 255, 255, 0.1),
+			inset 0px 2px 20px rgba(255, 255, 255, 0.07),
+			-80px -15px 15px -5px rgba(0, 0, 0, 0.1);
+		-ms-box-shadow:
+			inset 0px 1px 5px rgba(255, 255, 255, 0.1),
+			inset 0px 2px 20px rgba(255, 255, 255, 0.07),
+			-80px -15px 15px -5px rgba(0, 0, 0, 0.1);
+		-o-box-shadow:
+			inset 0px 1px 5px rgba(255, 255, 255, 0.1),
+			inset 0px 2px 20px rgba(255, 255, 255, 0.07),
+			-80px -15px 15px -5px rgba(0, 0, 0, 0.1);
+	}
+	input[value='on']:checked ~ label {
+		@apply shadow-[0px_0px_10px_rgba(255,255,255,0.8),0px_0px_30px_rgba(255,255,255,0.8),0px_0px_50px_rgba(255,255,255,0.6),0px_0px_70px_rgba(255,255,255,0.6),-80px_-15px_120px_0px_rgba(255,255,255,0.4)];
+		background: rgba(255, 255, 255, 1);
+		-webkit-box-shadow:
+			0px 0px 10px rgba(255, 255, 255, 0.8),
+			0px 0px 30px rgba(255, 255, 255, 0.8),
+			0px 0px 50px rgba(255, 255, 255, 0.6),
+			0px 0px 70px rgba(255, 255, 255, 0.6),
+			-80px -15px 120px 0px rgba(255, 255, 255, 0.4);
+		-moz-box-shadow:
+			0px 0px 10px rgba(255, 255, 255, 0.8),
+			0px 0px 30px rgba(255, 255, 255, 0.8),
+			0px 0px 50px rgba(255, 255, 255, 0.6),
+			0px 0px 70px rgba(255, 255, 255, 0.6),
+			-80px -15px 120px 0px rgba(255, 255, 255, 0.4);
+		-ms-box-shadow:
+			0px 0px 10px rgba(255, 255, 255, 0.8),
+			0px 0px 30px rgba(255, 255, 255, 0.8),
+			0px 0px 50px rgba(255, 255, 255, 0.6),
+			0px 0px 70px rgba(255, 255, 255, 0.6),
+			-80px -15px 120px 0px rgba(255, 255, 255, 0.4);
+		-o-box-shadow:
+			0px 0px 10px rgba(255, 255, 255, 0.8),
+			0px 0px 30px rgba(255, 255, 255, 0.8),
+			0px 0px 50px rgba(255, 255, 255, 0.6),
+			0px 0px 70px rgba(255, 255, 255, 0.6),
+			-80px -15px 120px 0px rgba(255, 255, 255, 0.4);
+	}
+	input[value='off']:checked ~ label:after {
+		@apply absolute left-0 top-0 ml-[15px] h-[15px] w-[15px] rounded-full border-2 border-solid border-[rgba(255,255,255,0.03)] content-["_"];
+	}
+	@-webkit-keyframes oscillaFilo {
+		from {
+			-webkit-transform: rotate(5deg);
+		}
+		to {
+			-webkit-transform: rotate(-5deg);
+		}
+	}
+	@-moz-keyframes oscillaFilo {
+		from {
+			-moz-transform: rotate(5deg);
+		}
+		to {
+			-moz-transform: rotate(-5deg);
+		}
+	}
+	@-ms-keyframes oscillaFilo {
+		from {
+			-ms-transform: rotate(5deg);
+		}
+		to {
+			-ms-transform: rotate(-5deg);
+		}
+	}
+	@-o-keyframes oscillaFilo {
+		from {
+			-o-transform: rotate(5deg);
+		}
+		to {
+			-o-transform: rotate(-5deg);
+		}
+	}
+	@keyframes oscillaFilo {
+		from {
+			transform: rotate(5deg);
+		}
+		to {
+			transform: rotate(-5deg);
+		}
+	}
+	@-webkit-keyframes oscillaLampadina {
+		from {
+			-webkit-transform: rotate(3deg) translate(-16.4px, -10px);
+		}
+		to {
+			-webkit-transform: rotate(-3deg) translate(16.4px, -100px);
+		}
+	}
+	@-moz-keyframes oscillaLampadina {
+		from {
+			-moz-transform: rotate(3deg) translate(-16.4px, -1px);
+		}
+		to {
+			-moz-transform: rotate(-3deg) translate(16.4px, -1px);
+		}
+	}
+	@-ms-keyframes oscillaLampadina {
+		from {
+			-ms-transform: rotate(3deg) translate(-16.4px, -1px);
+		}
+		to {
+			-ms-transform: rotate(-3deg) translate(16.4px, -1px);
+		}
+	}
+	@-o-keyframes oscillaLampadina {
+		from {
+			-o-transform: rotate(3deg) translate(-16.4px, -1px);
+		}
+		to {
+			-o-transform: rotate(-3deg) translate(16.4px, -1px);
+		}
+	}
+	@keyframes oscillaLampadina {
+		from {
+			transform: translateY(-1px) translateX(-16.4px) rotate(3deg);
+		}
+		to {
+			transform: translateY(-1px) translateX(16.4px) rotate(-3deg);
+		}
+	}
+</style>
+
+ File path: ./src/components/Particles.svelte 
+ 
+<script lang="ts">
+	import { onMount, onDestroy } from 'svelte';
+
+	let {
+		enabled = $bindable(),
+		position = $bindable(),
+		facingDirection
+	}: {
+		enabled: boolean;
+		facingDirection: () => 'left' | 'right';
+		position: { x: number; y: number };
+	} = $props();
+
+	interface Particle {
+		x: number;
+		y: number;
+		opacity: number;
+		size: number;
+		velocityX: number;
+		velocityY: number;
+		color: string;
+	}
+
+	let particles = $state<Particle[]>([]);
+	let intervalId: number;
+
+	const createExhaustParticle = (x: number, y: number): Particle => ({
+		x: x + (facingDirection() === 'right' ? 0 : 50),
+		y,
+		opacity: 1,
+		size: Math.random() * 6 + 8,
+		velocityX: Math.random() * 2 - 1,
+		velocityY: Math.random() * 2 - 1,
+		color: `rgba(200, 200, 200, ${Math.random() * 0.3})`
+	});
+
+	const updateParticles = () => {
+		particles = particles
+			.map((p) => ({
+				...p,
+				x: p.x + p.velocityX,
+				y: p.y + p.velocityY,
+				opacity: p.opacity - 0.03,
+				size: p.size * 1.01
+			}))
+			.filter((p) => p.opacity > 0);
+	};
+
+	onMount(() => {
+		intervalId = setInterval(() => {
+			updateParticles();
+			if (!enabled) return;
+
+			particles.push(createExhaustParticle(position.x, position.y));
+		}, 1000 / 60);
+	});
+
+	onDestroy(() => {
+		if (intervalId) clearInterval(intervalId);
+	});
+</script>
+
+{#each particles as particle}
+	<div
+		class="absolute rounded-full blur-sm"
+		style:left={particle.x + 'px'}
+		style:bottom={particle.y + 56 + 'px'}
+		style:width={particle.size + 'px'}
+		style:height={particle.size + 'px'}
+		style:background-color={particle.color}
+		style:opacity={particle.opacity}
+	></div>
+{/each}
+
+
+ File path: ./src/components/Car.svelte 
+ 
+<script lang="ts">
+	import { onDestroy, onMount } from 'svelte';
+	let enableCar = $state(false);
+
+	function checkMobile() {
+		return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+			navigator.userAgent
+		);
+	}
+	class Car {
+		public static MAX_SPEED = 2;
+		public static ROTATION_SPEED = 0.02;
+		public speed = $state(0);
+		interval = $state<number | null>(null);
+
+		public isAccelerating = $state(true);
+		public lastMouseX = $state(0);
+		public lastMouseY = $state(0);
+		public x = $state(-50);
+
+		public y = $state(-30);
+		public ref = $state<HTMLDivElement | null>(null);
+		carRotation = $state(0);
+		rotationSpeed = 0.1;
+		toDegrees = (angle: number) => angle * (180 / Math.PI);
+
+		move() {
+			let { x, y } = this.getCoordsDelta();
+			if (x < 50 && y < 50) {
+				this.isAccelerating = false;
+			} else {
+				this.isAccelerating = true;
+			}
+			this.x += this.speed * Math.cos(this.carRotation);
+			this.y += this.speed * Math.sin(this.carRotation);
+		}
+
+		accelerate() {
+			this.speed = Math.min(Car.MAX_SPEED, this.speed + 0.05);
+		}
+
+		decelerate() {
+			this.speed = Math.max(0, this.speed - 0.05);
+		}
+
+		getAngleFromCoords(x: number, y: number) {
+			return Math.atan2(y - this.y, x - this.x);
+		}
+
+		rotateCar() {
+			let angle = this.getAngleFromCoords(this.lastMouseX, this.lastMouseY);
+			let deltaAngle = angle - this.carRotation;
+			if (this.ref) {
+				if (deltaAngle > Math.PI) {
+					deltaAngle -= Math.PI * 2;
+				}
+
+				if (deltaAngle < -Math.PI) {
+					deltaAngle += Math.PI * 2;
+				}
+				if (Math.abs(deltaAngle) < 0.1) {
+					//this.carRotation += this.deltaAngle;
+				} else {
+					this.carRotation += deltaAngle > 0 ? Car.ROTATION_SPEED : -Car.ROTATION_SPEED;
+				}
+			}
+		}
+
+		startCar() {
+			this.interval = setInterval(() => {
+				if (!enableCar) return;
+				if (this.isAccelerating) {
+					this.accelerate();
+				} else {
+					this.decelerate();
+				}
+				this.move();
+				if (this.isAccelerating) {
+					this.rotateCar();
+				}
+			}, 1000 / 60);
+		}
+		stopCar() {
+			if (this.interval) {
+				clearInterval(this.interval);
+			}
+		}
+
+		getCoordsDelta() {
+			return {
+				x: Math.abs(this.lastMouseX - this.x),
+				y: Math.abs(this.lastMouseY - this.y)
+			};
+		}
+
+		public handleMouseMove(event: MouseEvent) {
+			this.lastMouseX = event.pageX;
+			this.lastMouseY = event.pageY;
+		}
+	}
+	let car = new Car();
+	onMount(() => {
+		let isMobile = checkMobile();
+		if (!isMobile) {
+			car.startCar();
+		}
+	});
+	onDestroy(() => {
+		car.stopCar();
+	});
+</script>
+
+<svelte:window
+	onmousemove={(e) => {
+		if (!enableCar) return;
+		car.handleMouseMove(e);
+	}}
+/>
+<div class="fixed bottom-2 left-2 z-50 flex items-center gap-2 p-1 max-lg:hidden">
+	<p class="text-sm">Enable car</p>
+	<input type="checkbox" class="checkbox checkbox-xs" bind:checked={enableCar} />
+</div>
+<img
+	src="/images/car.png"
+	alt="car"
+	bind:this={car.ref}
+	class:hidden={!enableCar}
+	style:left={car.x + 'px'}
+	style:top={car.y + 'px'}
+	style:transform={`rotate(${car.carRotation}rad)`}
+	class="absolute h-8 w-14 origin-center"
+/>
+
+ File path: ./src/components/ProjectsSection.svelte 
+ 
+<script lang="ts">
+	import { type Project, projects } from '$lib/wheel';
+	import { inview } from 'svelte-inview';
+	import ProjectDisplay from './ProjectDisplay.svelte';
+	import Wheel from './Wheel.svelte';
+
+	let isSpinning = $state(false);
+	let wheel = $state<HTMLDivElement>();
+	let active: Project[] = $state(projects.slice(0, 4));
+	let reserved: Project[] = $state(projects.slice(4));
+	let spinCount = $state(0);
+
+	let ontrigger = () => {
+		rotate(16);
+		setTimeout(() => {
+			updateActiveAndReserved();
+		}, 1000);
+	};
+
+	function updateActiveAndReserved() {
+		const movedProject = active.shift() as Project;
+		reserved.push(movedProject);
+
+		const newProject = reserved.shift();
+		if (newProject) {
+			active.push(newProject);
+		}
+	}
+
+	async function rotate(times: number) {
+		isSpinning = true;
+		spinCount++;
+		setTimeout(() => {
+			isSpinning = false;
+		}, 200 * 16);
+		if (wheel) wheel.style.transitionDuration = '0ms';
+		for (let i = 0; i < times; i++) {
+			if (wheel) {
+				let currentDeg = Number(wheel.style.rotate.replace('deg', '')) || 0;
+				let currentSpeed = Number(wheel.style.transitionDuration.replace('ms', '')) || 100;
+
+				let newSpeed = currentSpeed + 200;
+				wheel.style.transitionDuration = `${newSpeed}ms`;
+
+				let newRotate = `${currentDeg + 90}deg`;
+				wheel.style.rotate = newRotate;
+			}
+		}
+	}
+</script>
+
+<div class="flex min-h-screen flex-col items-center justify-center gap-20 bg-base-100 py-20">
+	<h2 class="text-center">Some of the things i did</h2>
+
+	<div
+		use:inview={{ unobserveOnEnter: true }}
+		oninview_enter={ontrigger}
+		class="flex h-auto w-fit flex-col-reverse items-start justify-center gap-20 lg:flex-row lg:items-start"
+	>
+		<Wheel {isSpinning} {active} bind:wheel hasSpinned={spinCount !== 0} />
+		<ProjectDisplay {isSpinning} {ontrigger} {spinCount} project={active[0]} />
+	</div>
+</div>
+
+ File path: ./src/components/Wheel.svelte 
+ 
+<script lang="ts">
+	import { calculateRotationForIndex, type Project } from '$lib/wheel';
+	import Icon from '@iconify/svelte';
+
+	let {
+		wheel = $bindable(),
+		active,
+		hasSpinned,
+		isSpinning
+	}: {
+		isSpinning: boolean;
+		hasSpinned: boolean;
+		active: Project[];
+		wheel?: HTMLDivElement;
+	} = $props();
+</script>
+
+{#snippet Cover()}
+	<div class="absolute z-50 size-full overflow-hidden rounded-full border-b-2 border-b-secondary">
+		<div
+			class="absolute -right-36 top-20 z-50 size-[300px] rotate-45 rounded-l-full border border-secondary bg-base-300"
+		></div>
+		<div
+			class="absolute -left-36 top-20 z-50 size-[300px] rotate-45 rounded-t-full border border-secondary bg-base-300"
+		></div>
+		<div
+			class=" absolute top-[45%] z-50 flex h-3/4 w-full items-center
+justify-center gap-2 bg-gradient-to-t from-base-100 to-base-300"
+		></div>
+	</div>
+{/snippet}
+
+<div class="relative box-border size-[500px] rounded-full border-base-200 shadow-lg">
+	{@render Cover()}
+	<div
+		style:height={(hasSpinned ? (isSpinning ? 0 : 160) : 0) + 'px'}
+		class="absolute left-1/2 top-1/3 z-10 w-32 -translate-x-1/2 self-center bg-red-400/60 blur-3xl transition-all duration-1000"
+	></div>
+	<div
+		bind:this={wheel}
+		style="transition-duration: 100ms;"
+		class="absolute size-full rounded-full bg-base-200 transition-all duration-500"
+	>
+		{#each active as project, index (project.id)}
+			{@const riseup = index === 0 && !isSpinning ? 'scale(1.5) translateY(80px)' : 'scale(1)'}
+
+			<div
+				class="absolute top-0 z-10 flex size-full flex-col items-center rounded-b-full rounded-t-full p-2 px-6 py-4 pt-8 transition-all duration-700"
+				style={`transform: ${riseup} rotate(${calculateRotationForIndex(index)}deg)`}
+			>
+				<div class="text-md mb-6 flex items-center gap-2 text-center text-base-content/60">
+					{#if hasSpinned}
+						<span class="text-base-content">{project.name}</span>
+					{:else}
+						<p>Pull the lever!</p>
+						<Icon icon="mdi:arrow-right"></Icon>
+					{/if}
+				</div>
+				{#if project.logoUrl && hasSpinned}
+					<img class=" size-10 rounded-full" src={project.logoUrl} alt={project.name} />
+				{:else if hasSpinned}
+					<div class=" size-10 rounded-full bg-primary"></div>
+				{/if}
+			</div>
+		{/each}
+	</div>
+</div>
+
+ File path: ./src/routes/+page.svelte 
+ 
+<script lang="ts">
+	import Icon from '@iconify/svelte';
+	import Facts from '../components/Facts.svelte';
+	import Game from '../components/Game.svelte';
+  import RedButton from "../components/RedButton.svelte"
+	import Lamp from '../components/Lamp.svelte';
+	import ProjectsSection from '../components/ProjectsSection.svelte';
+	import Tyler from '../components/Tyler.svelte';
+
+	function blurAfter(y: number, maxBlur: number = 10) {
+		if (scrollY <= y) return '';
+
+		const blurAmount = Math.min(((scrollY - y) / (window.innerHeight - y)) * maxBlur, maxBlur);
+		return `blur(${blurAmount}px)`;
+	}
+
+	function moveTopDividedBy(modifier: number) {
+		return `translateY(-${scrollY / modifier}px) `;
+	}
+
+	let scrollY = $state(0);
+	const username = '0x4c656f';
+
+	const topLangsUrl = `https://github-readme-stats.vercel.app/api/top-langs/?username=${username}&theme=radical&layout=compact`;
+</script>
+
+<svelte:window bind:scrollY />
+
+<div class="flex flex-col gap-20 px-4">
+	<div class="flex h-screen items-center justify-center bg-base-100">
+		<Tyler></Tyler>
+		<Lamp />
+		<h1>
+			Hi there! My name is Leo.<br /> I am a programmer
+		</h1>
+		{#if scrollY / 20 < 20}
+			<div
+				style:filter={blurAfter(0)}
+				style:transform={'translateX(-50%) ' + moveTopDividedBy(4)}
+				class="absolute bottom-20 left-1/2 flex flex-col items-center"
+			>
+				<p>Scroll down</p>
+				<Icon icon="mdi:arrow-down"></Icon>
+			</div>
+		{/if}
+	</div>
+
+	<div class="flex h-screen w-screen flex-col items-center bg-base-100">
+		<div class="flex w-full flex-col items-center justify-center gap-10 lg:flex-row-reverse">
+			<h2 class="relative max-w-[50%] text-center lg:text-left">
+				I specialize on creating bullet-proof<br class="max-lg:hidden" /> web applications using<br
+				/>
+				<span class="bg-gradient-to-r from-blue-400 to-blue-500 bg-clip-text text-transparent"
+					>Typescript</span
+				>
+				and
+				<span class="bg-gradient-to-r from-orange-300 to-orange-400 bg-clip-text text-transparent"
+					>Rust</span
+				>
+			</h2>
+			<img
+				src={topLangsUrl}
+				alt="Top Languages"
+				class=" relative w-96 overflow-x-hidden text-center"
+			/>
+		</div>
+	</div>
+
+	<ProjectsSection />
+
+	<div class=" flex h-screen w-screen items-center justify-center gap-10">
+		<h2 class="w-min text-right text-7xl text-base-content/30">9 facts about me</h2>
+		<Facts />
+	</div>
+	<Game />
+  <RedButton />
+</div>
+
+ File path: ./src/routes/+layout.svelte 
+ 
+<script lang="ts">
+	import '../app.css';
+	import Car from '../components/Car.svelte';
+	let { children } = $props();
+</script>
+
+<Car />
+{@render children()}

@@ -5,14 +5,12 @@
 
 
 body {
-  @apply font-inter
+  @apply font-inter overflow-x-hidden
 }
 
 h1,h2 {
   @apply text-3xl text-center
 }
-
-
 
 
 /** {*/

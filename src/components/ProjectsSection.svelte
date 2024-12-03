@@ -49,13 +49,13 @@
 	}
 </script>
 
-<div class="flex min-h-screen flex-col items-center justify-center gap-20 bg-base-100 py-20">
+<div class="flex min-h-screen w-full flex-col items-center justify-center gap-20 bg-base-100 py-20">
 	<h2 class="text-center">Some of the things i did</h2>
 
 	<div
 		use:inview={{ unobserveOnEnter: true }}
 		oninview_enter={ontrigger}
-		class="flex h-auto w-fit flex-col-reverse items-start justify-center gap-20 lg:flex-row lg:items-start"
+		class="flex h-auto w-fit flex-col-reverse items-center justify-center gap-20 lg:flex-row lg:items-start"
 	>
 		<Wheel {isSpinning} {active} bind:wheel hasSpinned={spinCount !== 0} />
 		<ProjectDisplay {isSpinning} {ontrigger} {spinCount} project={active[0]} />

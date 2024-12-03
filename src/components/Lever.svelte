@@ -68,7 +68,7 @@
 		isDragging = false;
 	}}
 />
-<div class="flex w-32 flex-col left-full border-red-400 absolute gap-6  ">
+<div class=" hidden lg:flex  w-32 flex-col left-full border-red-400 absolute gap-6  ">
 	<div
 		class={`relative z-[200] box-border flex h-32 w-16 items-center justify-center rounded-r-full border-l-0 border-base-content/30  shadow-md ${disabled
 			? 'bg-base-300/90'

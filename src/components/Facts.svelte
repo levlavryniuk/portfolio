@@ -12,10 +12,19 @@
 	];
 </script>
 
-<div class="flex  flex-col items-center justify-center p-4">
-	<ol class="flex w-max max-w-2xl list-decimal flex-col items-start gap-3">
-		{#each facts as fact}
-			<li class=" text-2xl">{fact}</li>
-		{/each}
-	</ol>
+<div
+	class=" flex h-screen w-full items-center justify-center gap-10 overflow-hidden max-md:flex-col"
+>
+	<h2
+		class="text-center text-base-content md:w-min md:text-right md:text-7xl md:text-base-content/30"
+	>
+		9 facts about me
+	</h2>
+	<div class="flex flex-col items-center justify-center p-4">
+		<ul class="flex max-w-2xl flex-col items-start gap-1 text-base-content/70 md:w-max md:gap-3">
+			{#each facts as fact, i}
+				<li class="text-lg md:text-xl lg:text-2xl">{i + 1}. {fact}</li>
+			{/each}
+		</ul>
+	</div>
 </div>

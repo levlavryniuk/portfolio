@@ -30,7 +30,7 @@ justify-center gap-2 bg-gradient-to-t from-base-100 to-base-300"
 	</div>
 {/snippet}
 
-<div class="relative box-border size-[500px] rounded-full border-base-200 shadow-lg">
+<div class="relative box-border size-80 rounded-full border-base-200 shadow-lg md:size-[500px]">
 	{@render Cover()}
 	<div
 		style:height={(hasSpinned ? (isSpinning ? 0 : 160) : 0) + 'px'}
@@ -45,23 +45,32 @@ justify-center gap-2 bg-gradient-to-t from-base-100 to-base-300"
 			{@const riseup = index === 0 && !isSpinning ? 'scale(1.5) translateY(80px)' : 'scale(1)'}
 
 			<div
-				class="absolute top-0 z-10 flex size-full flex-col items-center rounded-b-full rounded-t-full p-2 px-6 py-4 pt-8 transition-all duration-700"
+				class="absolute top-0 z-10 flex size-full flex-col items-center rounded-b-full rounded-t-full px-6 pb-8 transition-all duration-700 md:py-4 md:pt-8"
 				style={`transform: ${riseup} rotate(${calculateRotationForIndex(index)}deg)`}
+				class:hidden={!isSpinning && index !== 0}
+				class:riseup-mobile={!isSpinning && index === 0}
+				class:risedown-mobile={!isSpinning && index === 1}
 			>
 				<div class="text-md mb-6 flex items-center gap-2 text-center text-base-content/60">
 					{#if hasSpinned}
-						<span class="text-base-content">{project.name}</span>
+						<span class="text-xs text-base-content md:text-base">{project.name}</span>
 					{:else}
 						<p>Pull the lever!</p>
 						<Icon icon="mdi:arrow-right"></Icon>
 					{/if}
 				</div>
 				{#if project.logoUrl && hasSpinned}
-					<img class=" size-10 rounded-full" src={project.logoUrl} alt={project.name} />
+					<img class="size-6 rounded-full md:size-10" src={project.logoUrl} alt={project.name} />
 				{:else if hasSpinned}
-					<div class=" size-10 rounded-full bg-primary"></div>
+					<div class=" size-6 rounded-full bg-primary md:size-10"></div>
 				{/if}
 			</div>
 		{/each}
 	</div>
 </div>
+
+<style>
+	.riseup-mobile {
+		@apply max-md:-top-4;
+	}
+</style>

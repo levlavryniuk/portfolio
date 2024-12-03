@@ -25,11 +25,11 @@
 
 <svelte:window bind:scrollY />
 
-<div class="flex flex-col gap-20 px-4">
-	<div class="flex h-screen items-center justify-center bg-base-100">
+<div class="flex flex-col gap-20 overflow-x-hidden px-4">
+	<div class="flex min-h-screen items-center justify-center bg-base-100">
 		<Tyler></Tyler>
 		<Lamp />
-		<h1>
+		<h1 class="max-md:text-2xl">
 			Hi there! My name is Leo.<br /> I am a programmer
 		</h1>
 		{#if scrollY / 20 < 20}
@@ -44,9 +44,9 @@
 		{/if}
 	</div>
 
-	<div class="flex h-screen w-screen flex-col items-center bg-base-100">
+	<div class="flex h-screen w-full flex-col items-center bg-base-100">
 		<div class="flex w-full flex-col items-center justify-center gap-10 lg:flex-row-reverse">
-			<h2 class="relative max-w-[50%] text-center lg:text-left">
+			<h2 class="relative w-full text-center md:max-w-[50%] lg:text-left">
 				I specialize on creating bullet-proof<br class="max-lg:hidden" /> web applications using<br
 				/>
 				<span class="bg-gradient-to-r from-blue-400 to-blue-500 bg-clip-text text-transparent"
@@ -67,9 +67,6 @@
 
 	<ProjectsSection />
 
-	<div class=" flex h-screen w-screen items-center justify-center gap-10">
-		<h2 class="w-min text-right text-7xl text-base-content/30">9 facts about me</h2>
-		<Facts />
-	</div>
+	<Facts />
 	<Game />
 </div>

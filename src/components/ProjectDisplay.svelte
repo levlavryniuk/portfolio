@@ -3,6 +3,7 @@
 	import Icon from '@iconify/svelte';
 	import { fade } from 'svelte/transition';
 	import Lever from './Lever.svelte';
+	import RedButton from './RedButton.svelte';
 
 	let {
 		project,
@@ -12,9 +13,9 @@
 	}: { project: Project; isSpinning: boolean; spinCount: number; ontrigger: () => void } = $props();
 </script>
 
-<div class="relative flex w-80 pl-2">
+<div class="relative mx-auto flex w-80 flex-col max-lg:items-center lg:flex-row">
 	<div
-		class=" card w-full overflow-hidden rounded-2xl rounded-tr-none border-base-content/30 border-blue-200 bg-base-200 shadow-xl transition-all duration-300 hover:shadow-2xl lg:w-96"
+		class=" card w-full overflow-hidden rounded-2xl border-base-content/30 border-blue-200 bg-base-200 shadow-xl transition-all duration-300 hover:shadow-2xl lg:w-96 lg:rounded-tr-none"
 	>
 		<!-- Header Section -->
 		<div class="relative">
@@ -47,11 +48,11 @@
 		</div>
 
 		<!-- Content Section -->
-		<div class="card-body max-md:px-3">
-			<div class="badge badge-secondary md:hidden">{project.status}</div>
+		<div class="card-body bg-gradient-to-t from-base-300 to-base-100 max-md:px-3">
+			<div class="badge badge-secondary lg:hidden">{project.status}</div>
 			<h2 class="card-title justify-start">
 				{project.name}
-				<div class="badge badge-secondary max-md:hidden">{project.status}</div>
+				<div class="badge badge-secondary max-lg:hidden">{project.status}</div>
 			</h2>
 
 			<p class="text-left text-base-content/80">{project.description}</p>
@@ -90,7 +91,7 @@
 						href={project.websiteUrl}
 						target="_blank"
 						rel="noopener noreferrer"
-						class="btn btn-primary"
+						class="btn btn-accent"
 					>
 						<Icon icon="lucide:globe" class="size-5" />
 						Website
@@ -108,5 +109,7 @@
 			</div>
 		</div>
 	</div>
+
 	<Lever {ontrigger} disabled={isSpinning} text={!isSpinning && spinCount < 2 ? 'Pull me!' : ''} />
+	<RedButton {ontrigger} />
 </div>
