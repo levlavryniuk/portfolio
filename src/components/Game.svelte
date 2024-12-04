@@ -31,9 +31,12 @@
 <div class="relative flex h-60 flex-col justify-end">
 	<div class=" mb-60 flex h-32 w-60 flex-col items-center justify-center gap-2">
 		<div class="-top-10 left-0 md:hidden">
-			<input type="range" bind:value min="0" max="100" class="range" />
+			<label for="acceleration" class="block w-full text-center text-base-content/60"
+				>Jetpack acceleration</label
+			>
+			<input id="acceleration" type="range" bind:value min="0" max="100" class="range" />
 		</div>
-		<div class="flex items-center justify-center gap-2">
+		<div class="flex items-center justify-center gap-2 max-lg:hidden">
 			<kbd
 				class="kbd kbd-lg select-none"
 				ontouchend={() => {
