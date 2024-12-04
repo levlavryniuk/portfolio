@@ -70,5 +70,4 @@
 
 	<Facts />
 	<Game />
-	<Funny />
 </div>

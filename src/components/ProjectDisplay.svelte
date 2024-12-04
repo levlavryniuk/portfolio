@@ -3,7 +3,6 @@
 	import Icon from '@iconify/svelte';
 	import { fade } from 'svelte/transition';
 	import Lever from './Lever.svelte';
-	import RedButton from './RedButton.svelte';
 
 	let {
 		project,
@@ -15,7 +14,7 @@
 
 <div class="relative mx-auto flex w-80 flex-col max-lg:items-center lg:flex-row">
 	<div
-		class=" card w-full overflow-hidden rounded-2xl border-base-content/30 border-blue-200 bg-base-200 shadow-xl transition-all duration-300 hover:shadow-2xl lg:w-96 lg:rounded-tr-none"
+		class=" card w-full overflow-hidden rounded-2xl border-base-content/30 border-blue-200 bg-base-200 shadow-xl transition-all duration-300 hover:shadow-2xl md:rounded-tr-none lg:w-96"
 	>
 		<!-- Header Section -->
 		<div class="relative">
