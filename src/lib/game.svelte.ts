@@ -9,9 +9,9 @@ type PlayerImageState =
 export default class Game {
 	private GRAVITY = 0.4;
 	private MAX_FALL_SPEED = 19;
-	jetpackAcceleration = $state(0.4);
 	private SPEED = 4;
 
+	jetpackAcceleration = $state(0.4);
 	isJetpacking = $state(false);
 	activeKeys: Set<string> = new Set();
 	imageSrc = $state<PlayerImageState>('man-stand-right');
@@ -58,8 +58,8 @@ export default class Game {
 	}
 
 	setJetpackAcceleration(a: number) {
-		let min = 0.4;
-		let newAccel = min+ a;
+		let min = 0.39;
+		let newAccel = min + a;
     if (a > 0){
       this.isJetpacking = true
     }else{
@@ -94,10 +94,6 @@ export default class Game {
 		}
 	}
 	toggleWalkingState() {
-		if (this.isInAir()) {
-			this.velocity.x > 0 ? (this.imageSrc = 'man-walk-right') : (this.imageSrc = 'man-walk-left');
-			return;
-		}
 		if (this.velocity.x < 0) {
 			this.imageSrc = this.imageSrc === 'man-stand-left' ? 'man-walk-left' : 'man-stand-left';
 		} else if (this.velocity.x > 0) {

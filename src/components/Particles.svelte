@@ -30,10 +30,10 @@
 		x: x + (facingDirection() === 'right' ? 0 : 50),
 		y,
 		opacity: 1,
-		size: Math.random() * 6 + 16 * power,
+		size: Math.random() * 6 + 8 + 8 * power,
 		velocityX: Math.random() * 2 - 1,
 		velocityY: Math.random() * 2 - 1,
-		color: `rgba(200, 200, 200, ${Math.random() * 0.8 * power})`
+		color: `rgba(200, 200, 200, ${Math.random() * (power + 0.1)})`
 	});
 
 	const updateParticles = () => {
