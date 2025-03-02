@@ -98,6 +98,7 @@
 			this.lastMouseY = event.pageY;
 		}
 	}
+
 	let car = new Car();
 	onMount(() => {
 		let isMobile = checkMobile();
@@ -105,6 +106,7 @@
 			car.startCar();
 		}
 	});
+
 	onDestroy(() => {
 		car.stopCar();
 	});

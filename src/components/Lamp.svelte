@@ -21,21 +21,24 @@
 >
 	<input type="radio" name="switch" value="on" checked={true} onchange={toggleLamp} />
 	<input type="radio" name="switch" value="off" checked={false} onchange={toggleLamp} />
-	<label for="switch" class="border-l cursor-pointer bg-base-200/80"></label>
+	<label for="switch" class="bg-base-200/80 cursor-pointer border-l"></label>
 	<div id="filo"></div>
 </div>
 
 <style>
+	@reference "../app.css"
+
 	#lampadario {
-		@apply absolute right-1/3 top-0;
+		@apply absolute top-0 right-1/3 border-8;
 	}
 	#filo {
-		@apply relative left-2/4 z-[1] -ml-px h-[150px] w-0.5 origin-[0%_0%] bg-black after:absolute after:left-[-3px] after:top-full after:h-0 after:w-1 after:border-x-4 after:border-b-[15px] after:border-solid after:border-x-transparent after:border-b-black after:content-["_"];
+		@apply relative left-2/4 z-[1] -ml-px h-[150px] w-0.5 origin-[0%_0%] bg-black after:absolute after:top-full after:left-[-3px] after:h-0 after:w-1 after:border-x-4 after:border-b-[15px] after:border-solid after:border-x-transparent after:border-b-black after:content-["_"];
 		animation: oscillaFilo 0.9s ease-in-out 0s infinite alternate;
 		-webkit-transform-origin: 0% 0%;
 		-moz-transform-origin: 0% 0%;
 		-ms-transform-origin: 0% 0%;
 		-o-transform-origin: 0% 0%;
+		transform-origin: 0% 0%;
 		-webkit-animation: oscillaFilo 0.9s ease-in-out 0s infinite alternate;
 		-moz-animation: oscillaFilo 0.9s ease-in-out 0s infinite alternate;
 		-ms-animation: oscillaFilo 0.9s ease-in-out 0s infinite alternate;
@@ -68,7 +71,7 @@
 		@apply top-[150px];
 	}
 	label {
-		@apply absolute left-0 top-[164px] -ml-6 h-[51px] w-[51px] rounded-full;
+		@apply absolute top-[164px] left-0 -ml-6 h-[51px] w-[51px] rounded-full;
 		-webkit-border-radius: 100%;
 		animation: oscillaLampadina 0.9s ease-in-out 0s infinite alternate;
 		-moz-border-radius: 100%;
@@ -128,7 +131,7 @@
 			-80px -15px 120px 0px rgba(255, 255, 255, 0.4);
 	}
 	input[value='off']:checked ~ label:after {
-		@apply absolute left-0 top-0 ml-[15px] h-[15px] w-[15px] rounded-full border-2 border-solid border-[rgba(255,255,255,0.03)] content-["_"];
+		@apply absolute top-0 left-0 ml-[15px] h-[15px] w-[15px] rounded-full border-2 border-solid border-[rgba(255,255,255,0.03)] content-["_"];
 	}
 	@-webkit-keyframes oscillaFilo {
 		from {

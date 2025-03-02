@@ -2,10 +2,9 @@
 	import Icon from '@iconify/svelte';
 	import Facts from '../components/Facts.svelte';
 	import Game from '../components/Game.svelte';
-	import Lamp from '../components/Lamp.svelte';
-	import Funny from '../components/Funny.svelte';
 	import ProjectsSection from '../components/ProjectsSection.svelte';
 	import Tyler from '../components/Tyler.svelte';
+	import CanvasTest from '../components/CanvasTest.svelte';
 
 	function blurAfter(y: number, maxBlur: number = 10) {
 		if (scrollY <= y) return '';
@@ -19,7 +18,7 @@
 	}
 
 	let scrollY = $state(0);
-	const username = '0x4c656f';
+	const username = 'levlavryniuk';
 
 	const topLangsUrl = `https://github-readme-stats.vercel.app/api/top-langs/?username=${username}&theme=radical&layout=compact`;
 </script>
@@ -27,9 +26,9 @@
 <svelte:window bind:scrollY />
 
 <div class="flex flex-col overflow-x-hidden px-4">
-	<div class="flex min-h-screen items-center justify-center bg-base-100">
+	<CanvasTest></CanvasTest>
+	<div class="bg-base-100 flex min-h-screen items-center justify-center">
 		<Tyler></Tyler>
-		<Lamp />
 		<h1 class="max-md:text-2xl">
 			Hi there! My name is Leo.<br /> I am a programmer
 		</h1>
@@ -45,8 +44,8 @@
 		{/if}
 	</div>
 
-	<div class="flex h-screen w-full flex-col items-center justify-center bg-base-100">
-		<div class="flex w-full flex-col items-center justify-center gap-10 lg:flex-row-reverse">
+	<div class="bg-base-100 flex h-screen w-full flex-col items-center justify-center">
+		<div class="flex w-full flex-col-reverse items-center justify-center gap-10">
 			<h2 class="relative w-full text-center md:w-fit md:max-w-[50%] lg:text-left">
 				I specialize on creating bullet-proof<br class="max-lg:hidden" /> web applications using<br
 				/>
@@ -66,8 +65,5 @@
 		</div>
 	</div>
 
-	<ProjectsSection />
-
-	<Facts />
 	<Game />
 </div>

@@ -31,7 +31,7 @@
 <div class="relative flex h-60 flex-col justify-end">
 	<div class=" mb-60 flex h-32 w-60 flex-col items-center justify-center gap-2">
 		<div class="-top-10 left-0 md:hidden">
-			<label for="acceleration" class="block w-full text-center text-base-content/60"
+			<label for="acceleration" class="text-base-content/60 block w-full text-center"
 				>Jetpack acceleration</label
 			>
 			<input id="acceleration" type="range" bind:value min="0" max="100" class="range" />
@@ -75,9 +75,3 @@
 		class="absolute -left-4 flex h-16 w-screen bg-[url('/images/grass.png')] bg-cover md:bg-contain"
 	></div>
 </div>
-
-<style>
-	.pressed {
-		@apply bg-primary;
-	}
-</style>

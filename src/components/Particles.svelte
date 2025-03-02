@@ -1,17 +1,19 @@
+
+🌼   daisyUI 4.12.23
+├─ ✔︎ 2 themes added		https://daisyui.com/docs/themes
+╰─ ★ Star daisyUI on GitHub	https://github.com/saadeghi/daisyui
+
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
 
-	let {
-		enabled,
-		position,
-		facingDirection,
-		power
-	}: {
+	type Props = {
 		enabled: boolean;
 		facingDirection: () => 'left' | 'right';
 		position: { x: number; y: number };
 		power: number;
-	} = $props();
+	};
+
+	let { enabled, position, facingDirection, power }: Props = $props();
 
 	interface Particle {
 		x: number;
@@ -61,6 +63,9 @@
 		if (intervalId) clearInterval(intervalId);
 	});
 </script>
+
+🌼 daisyUI 4.12.23 ├─ ✔︎ 2 themes added https://daisyui.com/docs/themes ╰─ ❤︎ Support daisyUI
+project: https://opencollective.com/daisyui
 
 {#each particles as particle}
 	<div
